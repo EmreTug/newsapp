@@ -99,7 +99,11 @@ class _OnBoardViewState extends State<OnBoardView> {
                       isLastPage: _isLastPage,
                       onPressed: () {
                         if (_isLastPage) {
-                          Navigator.pushNamedAndRemoveUntil(context, "/",(route) => false,);
+                          Navigator.pushNamedAndRemoveUntil(
+                            context,
+                            "/",
+                            (route) => false,
+                          );
                         } else {
                           nextPage();
                         }

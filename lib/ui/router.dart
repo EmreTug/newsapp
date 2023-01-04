@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:newsapp/ui/view/authenticate/onboard/view/onboard_view.dart';
 import 'package:newsapp/ui/view/home/home_view.dart';
-import 'package:newsapp/ui/view/splash/splash_view.dart';
+import 'package:newsapp/ui/view/authenticate/splash/splash_view.dart';
 
 const String initialRoute = "splash";
 
