@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:newsapp/ui/view/authenticate/login/viewmodel/view/login_view.dart';
 import 'package:newsapp/ui/view/authenticate/onboard/view/onboard_view.dart';
 import 'package:newsapp/ui/view/home/home_view.dart';
 import 'package:newsapp/ui/view/authenticate/splash/splash_view.dart';
@@ -14,7 +15,9 @@ class Router {
         return MaterialPageRoute(builder: (_) => const SplashView());
       case 'onboard':
         return MaterialPageRoute(builder: (_) => const OnBoardView());
-      
+      case 'login':
+        return MaterialPageRoute(builder: (_) => const LoginView());
+
       default:
         return MaterialPageRoute(
             builder: (_) => Scaffold(

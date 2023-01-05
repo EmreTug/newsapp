@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:newsapp/ui/router.dart' as route;
 import 'package:provider/provider.dart';
 import 'package:newsapp/locator.dart';
-
+import 'core/model/user.dart';
+import 'core/services/auth_service.dart';
 import 'firebase_options.dart';
 
 void main() async{
@@ -13,7 +14,7 @@ void main() async{
 await Firebase.initializeApp(
   options: DefaultFirebaseOptions.currentPlatform,
 );
-  runApp(const MyApp());
+  runApp( const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -21,15 +22,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return 
-       MaterialApp(
-         title: 'NewsApp',
-         theme: ThemeData(),
-         initialRoute: route.initialRoute,
-         onGenerateRoute: route.Router.generateRoute,
-         debugShowCheckedModeBanner: false,
-         
-       );
-    
+    return StreamProvider<UserModel>(
+      initialData: UserModel.initial(),
+      create: (BuildContext context) =>
+          locator<AuthenticationService>().userController.stream,
+      child: MaterialApp(
+        title: 'NewsApp',
+        theme: ThemeData(),
+        initialRoute: route.initialRoute,
+        onGenerateRoute: route.Router.generateRoute,
+        debugShowCheckedModeBanner: false,
+        
+      ),
+    );
   }
 }

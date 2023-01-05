@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:newsapp/core/constants/FontConstants.dart';
-import 'package:newsapp/core/padding/padding.dart';
+import 'package:newsapp/ui/shared/padding/padding.dart';
 import 'package:newsapp/ui/view/authenticate/onboard/component/NextButton.dart';
 import 'package:newsapp/ui/view/authenticate/onboard/component/tabIndicator.dart';
 import 'package:newsapp/ui/view/authenticate/onboard/model/onboard_model.dart';
@@ -101,7 +101,7 @@ class _OnBoardViewState extends State<OnBoardView> {
                         if (_isLastPage) {
                           Navigator.pushNamedAndRemoveUntil(
                             context,
-                            "/",
+                            "login",
                             (route) => false,
                           );
                         } else {
