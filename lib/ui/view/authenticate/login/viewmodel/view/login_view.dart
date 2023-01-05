@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:newsapp/core/extension/imageextension.dart';
 import 'package:newsapp/ui/shared/ui_helpers.dart';
 import 'package:newsapp/ui/view/authenticate/login/viewmodel/login_viewmodel.dart';
 import 'package:newsapp/ui/view/base_view.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -145,11 +147,12 @@ class _LoginViewState extends State<LoginView> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.only(right: 10),
+                          const Padding(
+                            padding: EdgeInsets.only(right: 10),
                             child: Icon(
                               Icons.facebook,
                               color: Colors.blue,
+                              size: 24,
                             ),
                           ),
                           Text(facebook,
@@ -161,16 +164,13 @@ class _LoginViewState extends State<LoginView> {
                     Container(
                       height: 48,
                       width: 160,
-                      color: Color(0xffEEF1F4),
+                      color: const Color(0xffEEF1F4),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(right: 10),
-                            child: Icon(
-                              Icons.facebook,
-                              color: Colors.blue,
-                            ),
+                            child: SvgPicture.asset("ic_google".getSvg(),width: 24,height: 24,)
                           ),
                           Text(google,
                               style: GoogleFonts.poppins(
