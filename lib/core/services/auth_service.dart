@@ -30,4 +30,18 @@ class AuthenticationService {
 
     return hasUser;
   }
+
+   Future<bool> googleLogin() async {
+    var fetchedUser = await _api.signInWithGoogle();
+
+    var hasUser = (fetchedUser != null)?true:false;
+    if(hasUser) {
+      userController.add(fetchedUser);
+    }
+
+    return hasUser;
+  }
+
+
+
 }

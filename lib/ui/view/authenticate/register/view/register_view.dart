@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:newsapp/core/enum/viewstate.dart';
 import 'package:newsapp/core/extension/imageextension.dart';
 import 'package:newsapp/ui/view/authenticate/register/viewmodel/register_viewmodel.dart';
 
+import '../../../../shared/helpers/helper.dart';
 import '../../../../shared/ui_helpers.dart';
 import '../../../base_view.dart';
 import '../../../widget/custombutton.dart';
@@ -29,9 +31,9 @@ class _RegisterViewState extends State<RegisterView> {
   final String email = "Email";
   final String password = "Password";
   final String account = "Already have an account ?";
+  String? emailerror;
   late TextEditingController _emailcontroller;
   late TextEditingController _passwordcontroller;
-  bool check = false;
 
 
   @override
@@ -85,8 +87,12 @@ class _RegisterViewState extends State<RegisterView> {
                 padding: const EdgeInsets.only(
                     top: UIHelper.HorizontalSpaceLarge,
                     bottom: UIHelper.HorizontalSpaceSmall),
-                child: TextField(
+                child: TextFormField(
                   controller: _emailcontroller,
+                  onChanged: (value) {
+                   emailerror=Helper.validateEmail(value);
+                    
+                  },
                   decoration: InputDecoration(
                     border: const OutlineInputBorder(),
                     enabledBorder: const OutlineInputBorder(
@@ -94,11 +100,15 @@ class _RegisterViewState extends State<RegisterView> {
                             BorderSide(width: 1, color: Color(0xff4E4B66))),
                     hintText: email,
                     labelText: email,
+                    errorText: emailerror,
+                    
                   ),
                 ),
               ),
               TextField(
                 controller: _passwordcontroller,
+                  obscureText:!model.passwordVisible,
+
                 decoration: InputDecoration(
                   border: const OutlineInputBorder(),
                   enabledBorder: const OutlineInputBorder(
@@ -106,25 +116,36 @@ class _RegisterViewState extends State<RegisterView> {
                           BorderSide(width: 1, color: Color(0xff4E4B66))),
                   hintText: password,
                   labelText: password,
+                   suffixIcon: IconButton(icon: Icon(model.passwordVisible?Icons.visibility:Icons.visibility_off),onPressed:() {
+                    model.changePasswordVisible();
+                   
+                  } ,)
                 ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Checkbox(
-                    value: check,
+                    value: model.check,
                     onChanged: (value) {
-                      check = (value == null) ? false : value;
+                     model.changeCheckBox();
                     },
                   ),
                   Text(rememberme),
                 ],
               ),
+              Text(
+                        model.errorMessage,
+                        style: GoogleFonts.poppins(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 14,
+                            color:  Colors.red),
+                      ),
               Padding(
                 padding: const EdgeInsets.only(
                     top: UIHelper.HorizontalSpaceMedium,
                     bottom: UIHelper.HorizontalSpaceMedium),
-                child: customButton(text: signup,click: () async{
+                child:(model.state==ViewState.Busy)?const CircularProgressIndicator(): customButton(text: signup,click: () async{
                  var result= await model.register(_emailcontroller.text, _passwordcontroller.text);
                  if(!context.mounted)return;
                   (result)?Navigator.pushNamed(context, "/"):print(model.errorMessage);

@@ -6,21 +6,10 @@ import 'package:newsapp/ui/shared/ui_helpers.dart';
 import 'package:newsapp/ui/view/authenticate/login/viewmodel/login_viewmodel.dart';
 import 'package:newsapp/ui/view/base_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
+import '../../../../../core/enum/viewstate.dart';
+import '../../../../shared/helpers/helper.dart';
 import '../../../widget/custombutton.dart';
-String? validateEmail(String? value) {
-  const pattern = r"(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'"
-      r'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-'
-      r'\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*'
-      r'[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4]'
-      r'[0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9]'
-      r'[0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\'
-      r'x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])';
-  final regex = RegExp(pattern);
-  return value!.isNotEmpty && !regex.hasMatch(value)
-      ? 'Enter a valid email address'
-      : null;
-}
+
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
 
@@ -42,17 +31,15 @@ class _LoginViewState extends State<LoginView> {
   final String email = "Email";
   final String password = "Password";
   final String account = "don't have an account?";
+
     late TextEditingController _emailcontroller;
   late TextEditingController _passwordcontroller;
-  bool check = false;
-  bool _validate = false;
   String? emailerror;
 
   @override
   void initState() {
     _emailcontroller=TextEditingController();
     _passwordcontroller=TextEditingController();
-    // TODO: implement initState
     super.initState();
   }
   @override
@@ -89,7 +76,7 @@ class _LoginViewState extends State<LoginView> {
                     style: GoogleFonts.poppins(
                         fontWeight: FontWeight.w700,
                         fontSize: 48,
-                        color: Color(0xff1877F2)),
+                        color: const Color(0xff1877F2)),
                   )),
               Align(
                   alignment: Alignment.bottomLeft,
@@ -100,15 +87,13 @@ class _LoginViewState extends State<LoginView> {
                         fontSize: 20,
                         color: const Color(0xff4E4B66)),
                   )),
-
               Padding(
                 padding: const EdgeInsets.only(top: UIHelper.HorizontalSpaceSmall,bottom: UIHelper.HorizontalSpaceSmall),
                 child: TextFormField(
                   onChanged: (value) {
-                   emailerror= validateEmail(value);
-                   setState(() {
-                     
-                   });
+                    
+                   emailerror=Helper.validateEmail(value);
+                 
                   },
                   controller: _emailcontroller,
                   decoration: InputDecoration(
@@ -123,11 +108,16 @@ class _LoginViewState extends State<LoginView> {
               ),
               TextField(
                 controller: _passwordcontroller,
+                obscureText: !model.passwordVisible,
                 decoration: InputDecoration(
                   border: const OutlineInputBorder(),
                   enabledBorder: const OutlineInputBorder(borderSide:BorderSide( width: 1, color: Color(0xff4E4B66))),
                   hintText: password,
                   labelText: password,
+                  suffixIcon: IconButton(icon: Icon(model.passwordVisible?Icons.visibility:Icons.visibility_off),onPressed:() {
+                    model.changePasswordVisible();
+                   
+                  } ,)
                 ),
               ),
               Row(
@@ -136,8 +126,8 @@ class _LoginViewState extends State<LoginView> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                       Checkbox(value: check, onChanged: (value) {
-                         check=(value==null)?false:value;
+                       Checkbox(value: model.check, onChanged: (value) {
+                         model.changeCheckBox();
                        },),
                       Text(rememberme),
                     ],
@@ -153,12 +143,20 @@ class _LoginViewState extends State<LoginView> {
                       )),
                 ],
               ),
+              Text(
+                        model.errorMessage,
+                        style: GoogleFonts.poppins(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 14,
+                            color:  Colors.red),
+                      ),
               Padding(
                 padding: const EdgeInsets.only(
                     top: UIHelper.HorizontalSpaceMedium,
                     bottom: UIHelper.HorizontalSpaceMedium),
-                child: customButton(text: login,click: () async{
-                 var result= await model.login(_emailcontroller.text, _passwordcontroller.text);
+                child:model.state==ViewState.Busy?const CircularProgressIndicator(): customButton(text: login,click: () async{
+                 var result= await model.login(_emailcontroller.text,_passwordcontroller.text);
+                //  var result= await model.login(_emailcontroller.text, _passwordcontroller.text);
                  if(!context.mounted)return;
                   (result)?Navigator.pushNamed(context, "/"):print(model.errorMessage);
                   
@@ -193,21 +191,26 @@ class _LoginViewState extends State<LoginView> {
                         ],
                       ),
                     ),
-                    Container(
-                      height: 48,
-                      width: 160,
-                      color: const Color(0xffEEF1F4),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(right: 10),
-                            child: SvgPicture.asset("ic_google".getSvg(),width: 24,height: 24,)
-                          ),
-                          Text(google,
-                              style: GoogleFonts.poppins(
-                                  fontWeight: FontWeight.w400, fontSize: 14)),
-                        ],
+                    GestureDetector(
+                      onTap: () async{
+                       await model.googleLogin();
+                      },
+                      child: Container(
+                        height: 48,
+                        width: 160,
+                        color: const Color(0xffEEF1F4),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(right: 10),
+                              child: SvgPicture.asset("ic_google".getSvg(),width: 24,height: 24,)
+                            ),
+                            Text(google,
+                                style: GoogleFonts.poppins(
+                                    fontWeight: FontWeight.w400, fontSize: 14)),
+                          ],
+                        ),
                       ),
                     ),
                   ],
