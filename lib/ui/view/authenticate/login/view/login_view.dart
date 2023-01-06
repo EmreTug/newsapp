@@ -7,6 +7,8 @@ import 'package:newsapp/ui/view/authenticate/login/viewmodel/login_viewmodel.dar
 import 'package:newsapp/ui/view/base_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../widget/custombutton.dart';
+
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
 
@@ -40,7 +42,7 @@ class _LoginViewState extends State<LoginView> {
         ),
         body: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.only(
+            padding: const EdgeInsets.only(
                 left: UIHelper.VerticalSpaceMedium,
                 right: UIHelper.VerticalSpaceMedium),
             child:
@@ -66,15 +68,15 @@ class _LoginViewState extends State<LoginView> {
                     style: GoogleFonts.poppins(
                         fontWeight: FontWeight.w400,
                         fontSize: 20,
-                        color: Color(0xff4E4B66)),
+                        color: const Color(0xff4E4B66)),
                   )),
 
               Padding(
                 padding: const EdgeInsets.only(top: UIHelper.HorizontalSpaceSmall,bottom: UIHelper.HorizontalSpaceSmall),
                 child: TextField(
                   decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    enabledBorder: OutlineInputBorder(borderSide:BorderSide( width: 1, color: Color(0xff4E4B66))),
+                    border: const OutlineInputBorder(),
+                    enabledBorder: const OutlineInputBorder(borderSide:BorderSide( width: 1, color: Color(0xff4E4B66))),
                     hintText: email,
                     labelText: email,
                   ),
@@ -82,8 +84,8 @@ class _LoginViewState extends State<LoginView> {
               ),
               TextField(
                 decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  enabledBorder: OutlineInputBorder(borderSide:BorderSide( width: 1, color: Color(0xff4E4B66))),
+                  border: const OutlineInputBorder(),
+                  enabledBorder: const OutlineInputBorder(borderSide:BorderSide( width: 1, color: Color(0xff4E4B66))),
                   hintText: password,
                   labelText: password,
                 ),
@@ -107,7 +109,7 @@ class _LoginViewState extends State<LoginView> {
                         style: GoogleFonts.poppins(
                             fontWeight: FontWeight.w400,
                             fontSize: 14,
-                            color: Color(0xff5890FF)),
+                            color: const Color(0xff5890FF)),
                       )),
                 ],
               ),
@@ -115,22 +117,7 @@ class _LoginViewState extends State<LoginView> {
                 padding: const EdgeInsets.only(
                     top: UIHelper.HorizontalSpaceMedium,
                     bottom: UIHelper.HorizontalSpaceMedium),
-                child: SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    height: 50,
-                    child: ElevatedButton(
-                      onPressed: null,
-                      child: Text(
-                        login,
-                        style: GoogleFonts.poppins(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 16,
-                            color: Colors.white),
-                      ),
-                      style: ButtonStyle(
-                          backgroundColor: MaterialStateColor.resolveWith(
-                              (states) => Color(0xff1877F2))),
-                    )),
+                child: customButton(text: login),
               ),
               Text(or),
               Padding(
@@ -143,7 +130,7 @@ class _LoginViewState extends State<LoginView> {
                     Container(
                       height: 48,
                       width: 160,
-                      color: Color(0xffEEF1F4),
+                      color: const Color(0xffEEF1F4),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -188,14 +175,14 @@ class _LoginViewState extends State<LoginView> {
                       style: GoogleFonts.poppins(
                           fontWeight: FontWeight.w400,
                           fontSize: 14,
-                          color: Color(0xff4E4B66))),
+                          color: const Color(0xff4E4B66))),
                   TextButton(
-                      onPressed: null,
+                      onPressed: ()=>Navigator.pushNamed(context, "register"),
                       child: Text(signup,
                           style: GoogleFonts.poppins(
                               fontWeight: FontWeight.w400,
                               fontSize: 14,
-                              color: Color(0xff1877F2))))
+                              color: const Color(0xff1877F2))))
                 ],
               )
             ]),
