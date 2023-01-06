@@ -8,7 +8,19 @@ import 'package:newsapp/ui/view/base_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../widget/custombutton.dart';
-
+String? validateEmail(String? value) {
+  const pattern = r"(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'"
+      r'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-'
+      r'\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*'
+      r'[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4]'
+      r'[0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9]'
+      r'[0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\'
+      r'x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])';
+  final regex = RegExp(pattern);
+  return value!.isNotEmpty && !regex.hasMatch(value)
+      ? 'Enter a valid email address'
+      : null;
+}
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
 
@@ -30,7 +42,25 @@ class _LoginViewState extends State<LoginView> {
   final String email = "Email";
   final String password = "Password";
   final String account = "don't have an account?";
-   bool check=false;
+    late TextEditingController _emailcontroller;
+  late TextEditingController _passwordcontroller;
+  bool check = false;
+  bool _validate = false;
+  String? emailerror;
+
+  @override
+  void initState() {
+    _emailcontroller=TextEditingController();
+    _passwordcontroller=TextEditingController();
+    // TODO: implement initState
+    super.initState();
+  }
+  @override
+  void dispose() { 
+    super.dispose();
+    _emailcontroller.dispose();
+    _passwordcontroller.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return BaseView<LoginModel>(builder: (context, model, child) {
@@ -73,16 +103,26 @@ class _LoginViewState extends State<LoginView> {
 
               Padding(
                 padding: const EdgeInsets.only(top: UIHelper.HorizontalSpaceSmall,bottom: UIHelper.HorizontalSpaceSmall),
-                child: TextField(
+                child: TextFormField(
+                  onChanged: (value) {
+                   emailerror= validateEmail(value);
+                   setState(() {
+                     
+                   });
+                  },
+                  controller: _emailcontroller,
                   decoration: InputDecoration(
                     border: const OutlineInputBorder(),
                     enabledBorder: const OutlineInputBorder(borderSide:BorderSide( width: 1, color: Color(0xff4E4B66))),
                     hintText: email,
                     labelText: email,
+                    errorText: emailerror,
+
                   ),
                 ),
               ),
               TextField(
+                controller: _passwordcontroller,
                 decoration: InputDecoration(
                   border: const OutlineInputBorder(),
                   enabledBorder: const OutlineInputBorder(borderSide:BorderSide( width: 1, color: Color(0xff4E4B66))),
@@ -117,7 +157,12 @@ class _LoginViewState extends State<LoginView> {
                 padding: const EdgeInsets.only(
                     top: UIHelper.HorizontalSpaceMedium,
                     bottom: UIHelper.HorizontalSpaceMedium),
-                child: customButton(text: login),
+                child: customButton(text: login,click: () async{
+                 var result= await model.login(_emailcontroller.text, _passwordcontroller.text);
+                 if(!context.mounted)return;
+                  (result)?Navigator.pushNamed(context, "/"):print(model.errorMessage);
+                  
+                },),
               ),
               Text(or),
               Padding(

@@ -5,8 +5,9 @@ import 'package:google_fonts/google_fonts.dart';
 class customButton extends StatelessWidget {
   const customButton({
     super.key,
-    required this.text,
+    required this.text, this.click,
   });
+  final Function()? click;
 
   final String text;
 
@@ -16,7 +17,7 @@ class customButton extends StatelessWidget {
         width: MediaQuery.of(context).size.width,
         height: 50,
         child: ElevatedButton(
-          onPressed: ()=> Navigator.pushNamed(context, "/"),
+          onPressed: click,
           style: ButtonStyle(
               backgroundColor: MaterialStateColor.resolveWith(
                   (states) => const Color(0xff1877F2))),

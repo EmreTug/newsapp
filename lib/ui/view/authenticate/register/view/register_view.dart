@@ -29,7 +29,24 @@ class _RegisterViewState extends State<RegisterView> {
   final String email = "Email";
   final String password = "Password";
   final String account = "Already have an account ?";
+  late TextEditingController _emailcontroller;
+  late TextEditingController _passwordcontroller;
   bool check = false;
+
+
+  @override
+  void initState() {
+    _emailcontroller=TextEditingController();
+    _passwordcontroller=TextEditingController();
+    // TODO: implement initState
+    super.initState();
+  }
+  @override
+  void dispose() { 
+    super.dispose();
+    _emailcontroller.dispose();
+    _passwordcontroller.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return BaseView<RegisterModel>(builder: (context, model, child) {
@@ -69,6 +86,7 @@ class _RegisterViewState extends State<RegisterView> {
                     top: UIHelper.HorizontalSpaceLarge,
                     bottom: UIHelper.HorizontalSpaceSmall),
                 child: TextField(
+                  controller: _emailcontroller,
                   decoration: InputDecoration(
                     border: const OutlineInputBorder(),
                     enabledBorder: const OutlineInputBorder(
@@ -80,6 +98,7 @@ class _RegisterViewState extends State<RegisterView> {
                 ),
               ),
               TextField(
+                controller: _passwordcontroller,
                 decoration: InputDecoration(
                   border: const OutlineInputBorder(),
                   enabledBorder: const OutlineInputBorder(
@@ -105,7 +124,12 @@ class _RegisterViewState extends State<RegisterView> {
                 padding: const EdgeInsets.only(
                     top: UIHelper.HorizontalSpaceMedium,
                     bottom: UIHelper.HorizontalSpaceMedium),
-                child: customButton(text: signup),
+                child: customButton(text: signup,click: () async{
+                 var result= await model.register(_emailcontroller.text, _passwordcontroller.text);
+                 if(!context.mounted)return;
+                  (result)?Navigator.pushNamed(context, "/"):print(model.errorMessage);
+                  
+                },),
               ),
               Text(or),
               Padding(
