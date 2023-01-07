@@ -128,7 +128,7 @@ class _SelectNewsSourceState extends State<SelectNewsSource> {
               child: customButton(
                 text: "Next",
                 click: () {
-                  Navigator.pushNamed(context, "selecttopics");
+                  Navigator.pushNamed(context, "fillprofile");
                 },
               ),
             )
