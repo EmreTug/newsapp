@@ -32,22 +32,23 @@ class _LoginViewState extends State<LoginView> {
   final String password = "Password";
   final String account = "don't have an account?";
 
-    late TextEditingController _emailcontroller;
+  late TextEditingController _emailcontroller;
   late TextEditingController _passwordcontroller;
-  String? emailerror;
 
   @override
   void initState() {
-    _emailcontroller=TextEditingController();
-    _passwordcontroller=TextEditingController();
+    _emailcontroller = TextEditingController();
+    _passwordcontroller = TextEditingController();
     super.initState();
   }
+
   @override
-  void dispose() { 
-    super.dispose();
+  void dispose() {
     _emailcontroller.dispose();
     _passwordcontroller.dispose();
+    super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return BaseView<LoginModel>(builder: (context, model, child) {
@@ -88,21 +89,22 @@ class _LoginViewState extends State<LoginView> {
                         color: const Color(0xff4E4B66)),
                   )),
               Padding(
-                padding: const EdgeInsets.only(top: UIHelper.HorizontalSpaceSmall,bottom: UIHelper.HorizontalSpaceSmall),
-                child: TextFormField(
-                  onChanged: (value) {
-                    
-                   emailerror=Helper.validateEmail(value);
-                 
-                  },
-                  controller: _emailcontroller,
-                  decoration: InputDecoration(
-                    border: const OutlineInputBorder(),
-                    enabledBorder: const OutlineInputBorder(borderSide:BorderSide( width: 1, color: Color(0xff4E4B66))),
-                    hintText: email,
-                    labelText: email,
-                    errorText: emailerror,
-
+                padding: const EdgeInsets.only(
+                    top: UIHelper.HorizontalSpaceSmall,
+                    bottom: UIHelper.HorizontalSpaceSmall),
+                child: Form(
+                  autovalidateMode: AutovalidateMode.always,
+                  child: TextFormField(
+                    validator: Helper.validateEmail,
+                    controller: _emailcontroller,
+                    decoration: InputDecoration(
+                      border: const OutlineInputBorder(),
+                      enabledBorder: const OutlineInputBorder(
+                          borderSide:
+                              BorderSide(width: 1, color: Color(0xff4E4B66))),
+                      hintText: email,
+                      labelText: email,
+                    ),
                   ),
                 ),
               ),
@@ -110,15 +112,20 @@ class _LoginViewState extends State<LoginView> {
                 controller: _passwordcontroller,
                 obscureText: !model.passwordVisible,
                 decoration: InputDecoration(
-                  border: const OutlineInputBorder(),
-                  enabledBorder: const OutlineInputBorder(borderSide:BorderSide( width: 1, color: Color(0xff4E4B66))),
-                  hintText: password,
-                  labelText: password,
-                  suffixIcon: IconButton(icon: Icon(model.passwordVisible?Icons.visibility:Icons.visibility_off),onPressed:() {
-                    model.changePasswordVisible();
-                   
-                  } ,)
-                ),
+                    border: const OutlineInputBorder(),
+                    enabledBorder: const OutlineInputBorder(
+                        borderSide:
+                            BorderSide(width: 1, color: Color(0xff4E4B66))),
+                    hintText: password,
+                    labelText: password,
+                    suffixIcon: IconButton(
+                      icon: Icon(model.passwordVisible
+                          ? Icons.visibility
+                          : Icons.visibility_off),
+                      onPressed: () {
+                        model.changePasswordVisible();
+                      },
+                    )),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -126,14 +133,21 @@ class _LoginViewState extends State<LoginView> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                       Checkbox(value: model.check, onChanged: (value) {
-                         model.changeCheckBox();
-                       },),
+                      Checkbox(
+                        value: model.check,
+                        onChanged: (value) {
+                          model.changeCheckBox();
+                        },
+                      ),
                       Text(rememberme),
                     ],
                   ),
                   TextButton(
-                      onPressed: null,
+                      onPressed: () async {
+                        FocusManager.instance.primaryFocus?.unfocus();
+
+                        Navigator.pushNamed(context, "forgotpassword");
+                      },
                       child: Text(
                         forgotpassword,
                         style: GoogleFonts.poppins(
@@ -144,23 +158,34 @@ class _LoginViewState extends State<LoginView> {
                 ],
               ),
               Text(
-                        model.errorMessage,
-                        style: GoogleFonts.poppins(
-                            fontWeight: FontWeight.w400,
-                            fontSize: 14,
-                            color:  Colors.red),
-                      ),
+                model.errorMessage,
+                style: GoogleFonts.poppins(
+                    fontWeight: FontWeight.w400,
+                    fontSize: 14,
+                    color: Colors.red),
+              ),
               Padding(
                 padding: const EdgeInsets.only(
                     top: UIHelper.HorizontalSpaceMedium,
                     bottom: UIHelper.HorizontalSpaceMedium),
-                child:model.state==ViewState.Busy?const CircularProgressIndicator(): customButton(text: login,click: () async{
-                 var result= await model.login(_emailcontroller.text,_passwordcontroller.text);
-                //  var result= await model.login(_emailcontroller.text, _passwordcontroller.text);
-                 if(!context.mounted)return;
-                  (result)?Navigator.pushNamed(context, "/"):print(model.errorMessage);
-                  
-                },),
+                child: model.state == ViewState.Busy
+                    ? const CircularProgressIndicator()
+                    : customButton(
+                        text: login,
+                        click: () async {
+                          var result = await model.login(
+                              _emailcontroller.text, _passwordcontroller.text);
+                          //  var result= await model.login(_emailcontroller.text, _passwordcontroller.text);
+                          if (!context.mounted) return;
+                          (result)
+                              ? Navigator.pushNamedAndRemoveUntil(
+                                  context,
+                                  "/",
+                                  (route) => false,
+                                )
+                              : print(model.errorMessage);
+                        },
+                      ),
               ),
               Text(or),
               Padding(
@@ -192,8 +217,8 @@ class _LoginViewState extends State<LoginView> {
                       ),
                     ),
                     GestureDetector(
-                      onTap: () async{
-                       await model.googleLogin();
+                      onTap: () async {
+                        await model.googleLogin();
                       },
                       child: Container(
                         height: 48,
@@ -203,9 +228,12 @@ class _LoginViewState extends State<LoginView> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(right: 10),
-                              child: SvgPicture.asset("ic_google".getSvg(),width: 24,height: 24,)
-                            ),
+                                padding: const EdgeInsets.only(right: 10),
+                                child: SvgPicture.asset(
+                                  "ic_google".getSvg(),
+                                  width: 24,
+                                  height: 24,
+                                )),
                             Text(google,
                                 style: GoogleFonts.poppins(
                                     fontWeight: FontWeight.w400, fontSize: 14)),
@@ -225,7 +253,7 @@ class _LoginViewState extends State<LoginView> {
                           fontSize: 14,
                           color: const Color(0xff4E4B66))),
                   TextButton(
-                      onPressed: ()=>Navigator.pushNamed(context, "register"),
+                      onPressed: () => Navigator.pushNamed(context, "register"),
                       child: Text(signup,
                           style: GoogleFonts.poppins(
                               fontWeight: FontWeight.w400,

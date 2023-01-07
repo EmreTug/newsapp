@@ -31,7 +31,6 @@ class _RegisterViewState extends State<RegisterView> {
   final String email = "Email";
   final String password = "Password";
   final String account = "Already have an account ?";
-  String? emailerror;
   late TextEditingController _emailcontroller;
   late TextEditingController _passwordcontroller;
 
@@ -87,21 +86,22 @@ class _RegisterViewState extends State<RegisterView> {
                 padding: const EdgeInsets.only(
                     top: UIHelper.HorizontalSpaceLarge,
                     bottom: UIHelper.HorizontalSpaceSmall),
-                child: TextFormField(
-                  controller: _emailcontroller,
-                  onChanged: (value) {
-                   emailerror=Helper.validateEmail(value);
-                    
-                  },
-                  decoration: InputDecoration(
-                    border: const OutlineInputBorder(),
-                    enabledBorder: const OutlineInputBorder(
-                        borderSide:
-                            BorderSide(width: 1, color: Color(0xff4E4B66))),
-                    hintText: email,
-                    labelText: email,
-                    errorText: emailerror,
-                    
+                child: Form(
+                  autovalidateMode: AutovalidateMode.always,
+
+                  child: TextFormField(
+                    validator:Helper.validateEmail ,
+                    controller: _emailcontroller,
+                   
+                    decoration: InputDecoration(
+                      border: const OutlineInputBorder(),
+                      enabledBorder: const OutlineInputBorder(
+                          borderSide:
+                              BorderSide(width: 1, color: Color(0xff4E4B66))),
+                      hintText: email,
+                      labelText: email,
+                      
+                    ),
                   ),
                 ),
               ),
@@ -148,7 +148,7 @@ class _RegisterViewState extends State<RegisterView> {
                 child:(model.state==ViewState.Busy)?const CircularProgressIndicator(): customButton(text: signup,click: () async{
                  var result= await model.register(_emailcontroller.text, _passwordcontroller.text);
                  if(!context.mounted)return;
-                  (result)?Navigator.pushNamed(context, "/"):print(model.errorMessage);
+                  (result)?Navigator.pushNamedAndRemoveUntil(context, "/",(route) => false,):print(model.errorMessage);
                   
                 },),
               ),

@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:newsapp/ui/router.dart' as route;
 import 'package:provider/provider.dart';
 import 'package:newsapp/locator.dart';
@@ -28,7 +29,13 @@ class MyApp extends StatelessWidget {
           locator<AuthenticationService>().userController.stream,
       child: MaterialApp(
         title: 'NewsApp',
-        theme: ThemeData(),
+        theme: ThemeData(
+          appBarTheme: const AppBarTheme(
+              elevation: 0,
+          backgroundColor: Colors.transparent,
+          systemOverlayStyle: SystemUiOverlayStyle.dark,
+          )
+        ),
         initialRoute: route.initialRoute,
         onGenerateRoute: route.Router.generateRoute,
         debugShowCheckedModeBanner: false,

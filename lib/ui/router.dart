@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:newsapp/ui/view/authenticate/forgotpassword/view/forgot_password_mail.dart';
+import 'package:newsapp/ui/view/authenticate/forgotpassword/view/forgot_password_view.dart';
+import 'package:newsapp/ui/view/authenticate/forgotpassword/view/success.dart';
 import 'package:newsapp/ui/view/authenticate/login/view/login_view.dart';
 import 'package:newsapp/ui/view/authenticate/onboard/view/onboard_view.dart';
 import 'package:newsapp/ui/view/authenticate/register/view/register_view.dart';
@@ -20,6 +23,12 @@ class Router {
         return MaterialPageRoute(builder: (_) => const LoginView());
       case 'register':
         return MaterialPageRoute(builder: (_) => const RegisterView());
+      case 'forgotpassword':
+        return MaterialPageRoute(builder: (_) => const ForgotPasswordView());
+      case 'forgotpasswordmail':
+        return MaterialPageRoute(builder: (_) => const ForgotPasswordMail());
+      case 'success':
+        return MaterialPageRoute(builder: (_) => const SuccessView());
 
       default:
         return MaterialPageRoute(
