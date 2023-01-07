@@ -1,8 +1,9 @@
 import 'dart:convert';
+import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
+import 'package:newsapp/core/model/country.dart';
 
 import '../model/user.dart';
 
@@ -31,7 +32,6 @@ class Api {
 
 
   Future<UserModel?> signInWithGoogle() async {
-   
     try {
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
@@ -63,6 +63,6 @@ class Api {
         .sendPasswordResetEmail(email: email);
     
   }
-
+  
  
 }

@@ -7,6 +7,9 @@ import 'package:newsapp/ui/view/authenticate/onboard/view/onboard_view.dart';
 import 'package:newsapp/ui/view/authenticate/register/view/register_view.dart';
 import 'package:newsapp/ui/view/home/home_view.dart';
 import 'package:newsapp/ui/view/authenticate/splash/splash_view.dart';
+import 'package:newsapp/ui/view/home/selectcountry/view/selectcountry.dart';
+import 'package:newsapp/ui/view/home/selectnewssource/view/selectnewssource.dart';
+import 'package:newsapp/ui/view/home/selecttopics/view/selecttopics.dart';
 
 const String initialRoute = "splash";
 
@@ -29,6 +32,12 @@ class Router {
         return MaterialPageRoute(builder: (_) => const ForgotPasswordMail());
       case 'success':
         return MaterialPageRoute(builder: (_) => const SuccessView());
+     case 'selectcountry':
+        return MaterialPageRoute(builder: (_) => const SelectCountry());
+     case 'selecttopics':
+        return MaterialPageRoute(builder: (_) => const SelectTopics());
+     case 'selectnewssource':
+        return MaterialPageRoute(builder: (_) => const SelectNewsSource());
 
       default:
         return MaterialPageRoute(

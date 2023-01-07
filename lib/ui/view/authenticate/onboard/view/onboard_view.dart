@@ -101,7 +101,7 @@ class _OnBoardViewState extends State<OnBoardView> {
                         if (_isLastPage) {
                           Navigator.pushNamedAndRemoveUntil(
                             context,
-                            "login",
+                            "selecttopics",
                             (route) => false,
                           );
                         } else {

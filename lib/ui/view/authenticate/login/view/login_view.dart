@@ -180,7 +180,7 @@ class _LoginViewState extends State<LoginView> {
                           (result)
                               ? Navigator.pushNamedAndRemoveUntil(
                                   context,
-                                  "/",
+                                  "selectcountry",
                                   (route) => false,
                                 )
                               : print(model.errorMessage);

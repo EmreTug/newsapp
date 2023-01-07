@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:newsapp/core/model/user.dart';
 
 import '../../locator.dart';
-import 'service.dart';
+import 'API.dart';
 
 class AuthenticationService {
   final Api _api = locator<Api>();
