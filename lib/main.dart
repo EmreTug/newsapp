@@ -34,11 +34,13 @@ class MyApp extends StatelessWidget {
               elevation: 0,
           backgroundColor: Colors.transparent,
           systemOverlayStyle: SystemUiOverlayStyle.dark,
-          )
+          ),
+           scaffoldBackgroundColor: Colors.white
         ),
         initialRoute: route.initialRoute,
         onGenerateRoute: route.Router.generateRoute,
         debugShowCheckedModeBanner: false,
+
         
       ),
     );
