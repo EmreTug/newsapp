@@ -5,7 +5,9 @@ import 'package:newsapp/ui/view/authenticate/onboard/component/NextButton.dart';
 import 'package:newsapp/ui/view/authenticate/onboard/component/tabIndicator.dart';
 import 'package:newsapp/ui/view/authenticate/onboard/model/onboard_model.dart';
 
+import '../../../base_view.dart';
 import '../component/BackButton.dart';
+import '../viewmodel/onboardviewmodel.dart';
 
 class OnBoardView extends StatefulWidget {
   const OnBoardView({super.key});
@@ -15,13 +17,6 @@ class OnBoardView extends StatefulWidget {
 }
 
 class _OnBoardViewState extends State<OnBoardView> {
-  int _selectedIndex = 0;
-
-  bool get _isLastPage =>
-      OnBoardModels.onBoardItems.length - 1 == _selectedIndex;
-
-  bool get _isFirstPage => _selectedIndex == 0;
-
   late PageController _pageController;
 
   @override
@@ -36,76 +31,43 @@ class _OnBoardViewState extends State<OnBoardView> {
     super.dispose();
   }
 
-  ValueNotifier<bool> isBackEnable = ValueNotifier(false);
-  void _incrementAndChange([int? value]) {
-    if (_isLastPage && value == null) {
-      _changeBackEnable(true);
-      return;
-    }
-
-    _changeBackEnable(false);
-    _incrementSelectedPage(value);
-  }
-
-  void _changeBackEnable(bool value) {
-    if (value == isBackEnable.value) return;
-    isBackEnable.value = value;
-  }
-
-  void _incrementSelectedPage([int? value]) {
-    setState(() {
-      if (value != null) {
-        _selectedIndex = value;
-      } else {
-        _selectedIndex++;
-      }
-    });
-  }
-
-  void previousPage() {
-    _pageController.animateToPage(_pageController.page!.toInt() - 1,
-        duration: const Duration(milliseconds: 400), curve: Curves.easeIn);
-  }
-
-  void nextPage() {
-    _pageController.animateToPage(_pageController.page!.toInt() + 1,
-        duration: const Duration(milliseconds: 400), curve: Curves.easeIn);
-  }
-
+ 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+
+    return BaseView<OnBoardViewModel>(builder: (context, model, child) {
+  return Scaffold(
       body: Column(
         children: [
-          _buildPageView(),
+          _buildPageView(model),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Padding(
                 padding: const EdgeInsets.only(left: 24),
-                child: TabIndicator(selectedIndex: _selectedIndex),
+                child: TabIndicator(selectedIndex: model.selectedIndex),
               ),
               Padding(
                 padding: const EdgeInsets.only(right: 24),
                 child: Row(
                   children: [
                     OnBoardBackButton(
-                      isFirstPage: _isFirstPage,
+                      isFirstPage: model.isFirstPage,
                       onPressed: () {
-                        previousPage();
+                        model.previousPage(_pageController);
                       },
                     ),
                     NextButton(
-                      isLastPage: _isLastPage,
+                      isLastPage: model.isLastPage,
                       onPressed: () {
-                        if (_isLastPage) {
+                        if (model.isLastPage) {
                           Navigator.pushNamedAndRemoveUntil(
                             context,
-                            "selecttopics",
+                            "login",
                             (route) => false,
                           );
                         } else {
-                          nextPage();
+                          model.nextPage(_pageController);
                         }
                       },
                     ),
@@ -117,14 +79,15 @@ class _OnBoardViewState extends State<OnBoardView> {
         ],
       ),
     );
+    });
   }
 
-  Widget _buildPageView() {
+  Widget _buildPageView(OnBoardViewModel model) {
     return Expanded(
       child: PageView.builder(
         controller: _pageController,
         onPageChanged: (value) {
-          _incrementAndChange(value);
+          model.incrementAndChange(value);
         },
         itemCount: OnBoardModels.onBoardItems.length,
         itemBuilder: (context, index) {

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:newsapp/ui/view/base_view.dart';
+import 'package:newsapp/ui/view/home/selectnewssource/viewmodel/selectnewssourceviewmodel.dart';
 import 'package:newsapp/ui/view/widget/custombutton.dart';
 
 import '../../../../shared/ui_helpers.dart';
@@ -14,22 +16,9 @@ class SelectNewsSource extends StatefulWidget {
 class _SelectNewsSourceState extends State<SelectNewsSource> {
   @override
   Widget build(BuildContext context) {
-    final List<Map> myProducts = [
-      {"id": 0, "name": "National", "isSelected": false},
-      {"id": 1, "name": "InterNational", "isSelected": false},
-      {"id": 2, "name": "Spor", "isSelected": false},
-      {"id": 1, "name": "InterNational", "isSelected": false},
-      {"id": 2, "name": "Spor", "isSelected": false},
-      {"id": 1, "name": "InterNational", "isSelected": false},
-      {"id": 2, "name": "Spor", "isSelected": false},
-      {"id": 1, "name": "InterNational", "isSelected": false},
-      {"id": 2, "name": "Spor", "isSelected": false},
-      {"id": 1, "name": "InterNational", "isSelected": false},
-      {"id": 2, "name": "Spor", "isSelected": false},
-      {"id": 1, "name": "InterNational", "isSelected": false},
-      {"id": 2, "name": "Spor", "isSelected": false},
-    ];
-    return Scaffold(
+ 
+    return BaseView<SelectNewsSourceModel>(builder: (context, model, child) {
+      return   Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
@@ -56,12 +45,10 @@ class _SelectNewsSourceState extends State<SelectNewsSource> {
                     spacing: 22,
                     runSpacing: 16,
                     crossAxisAlignment: WrapCrossAlignment.start,
-                    children: myProducts.map((e) {
+                    children: model.myProducts.map((e) {
                       return GestureDetector(
                         onTap: () {
-                          setState(() {
-                            e["isSelected"] = !e["isSelected"];
-                          });
+                         model.setSelected(e["id"]);
                         },
                         child: Container(
                             padding: const EdgeInsets.symmetric(
@@ -108,15 +95,17 @@ class _SelectNewsSourceState extends State<SelectNewsSource> {
                                           color: const Color(0xff1877F2))),
                                   child: Center(
                                     child: Text(
-                                      "Follow",
+                                      e["isSelected"]?"Following":"Follow",
                                       style: GoogleFonts.poppins(
                                           fontWeight: FontWeight.w600,
                                           fontSize: 16,
-                                          color: const Color(0xff1877F2)),
+                                          color: e["isSelected"]
+                                          ? Colors.white
+                                          :const Color(0xff1877F2),
                                     ),
                                   ),
                                 ),
-                              ],
+                            ),],
                             )),
                       );
                     }).toList()),
@@ -136,5 +125,7 @@ class _SelectNewsSourceState extends State<SelectNewsSource> {
         ),
       ),
     );
-  }
+ 
+    });
+   }
 }

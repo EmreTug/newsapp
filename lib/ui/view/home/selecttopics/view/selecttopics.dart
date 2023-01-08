@@ -3,6 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:newsapp/ui/view/widget/custombutton.dart';
 
 import '../../../../shared/ui_helpers.dart';
+import '../../../base_view.dart';
+import '../viewmodel/selecttopicsviewmodel.dart';
 
 class SelectTopics extends StatefulWidget {
   const SelectTopics({super.key});
@@ -14,26 +16,16 @@ class SelectTopics extends StatefulWidget {
 class _SelectTopicsState extends State<SelectTopics> {
   @override
   Widget build(BuildContext context) {
-    final List<Map> myProducts = [
-      {"id": 0, "name": "National", "isSelected": false},
-      {"id": 1, "name": "InterNational", "isSelected": false},
-      {"id": 2, "name": "Spor", "isSelected": false},
-      {"id": 3, "name": "Health", "isSelected": false},
-      {"id": 4, "name": "Health", "isSelected": false},
-
-
-    ];
-    return Scaffold(
+  
+    return BaseView<SelectTopicsModel>(builder: (context, model, child) {
+      return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: const Text(
           "Choose your Topics",
           style: TextStyle(color: Colors.black),
         ),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
+       
       ),
       body: Padding(
         padding: const EdgeInsets.only(
@@ -47,12 +39,10 @@ class _SelectTopicsState extends State<SelectTopics> {
               child: SingleChildScrollView(
                 child: Wrap(
                     crossAxisAlignment: WrapCrossAlignment.start,
-                    children: myProducts.map((e) {
+                    children: model.myProducts.map((e) {
                       return GestureDetector(
                         onTap: () {
-                          setState(() {
-                            e["isSelected"] = !e["isSelected"];
-                          });
+                         model.setSelected(e["id"]);
                         },
                         child: Padding(
                           padding: const EdgeInsets.all(4.0),
@@ -97,5 +87,7 @@ class _SelectTopicsState extends State<SelectTopics> {
         ),
       ),
     );
-  }
+ 
+    });
+    }
 }
