@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:newsapp/ui/view/widget/custombutton.dart';
 
-import '../../../../shared/ui_helpers.dart';
-import '../../../base_view.dart';
+import '../../../../../shared/ui_helpers.dart';
+import '../../../../base_view.dart';
 import '../viewmodel/selecttopicsviewmodel.dart';
 
 class SelectTopics extends StatefulWidget {
