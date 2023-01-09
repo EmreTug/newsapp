@@ -5,7 +5,8 @@ class CustomBottomNavigationBar extends StatefulWidget {
   const CustomBottomNavigationBar({super.key});
 
   @override
-  State<CustomBottomNavigationBar> createState() => _CustomBottomNavigationBarState();
+  State<CustomBottomNavigationBar> createState() =>
+      _CustomBottomNavigationBarState();
 }
 
 class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
@@ -22,11 +23,11 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
       _selectedIndex = index;
     });
   }
+
   @override
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
@@ -36,30 +37,36 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
         selectedFontSize: 12,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined,),
+            icon: Icon(
+              Icons.home_outlined,
+            ),
             label: 'Home',
-            
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.explore_outlined,),
+            icon: Icon(
+              Icons.explore_outlined,
+            ),
             label: 'Explore',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.bookmark_outline,),
+            icon: Icon(
+              Icons.bookmark_outline,
+            ),
             label: 'Bookmark',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline,),
+            icon: Icon(
+              Icons.person_outline,
+            ),
             label: 'Profile',
           ),
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: const Color(0xff1877F2),
-        unselectedItemColor:Colors.black,
+        unselectedItemColor: Colors.black,
         selectedLabelStyle: const TextStyle(color: Color(0xff1877F2)),
         unselectedLabelStyle: const TextStyle(color: Colors.black),
         showUnselectedLabels: true,
-        
         onTap: _onItemTapped,
       ),
     );
