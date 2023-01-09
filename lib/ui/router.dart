@@ -7,7 +7,7 @@ import 'package:newsapp/ui/view/authenticate/onboard/view/onboard_view.dart';
 import 'package:newsapp/ui/view/authenticate/register/view/register_view.dart';
 import 'package:newsapp/ui/view/bottom_navigation_bar.dart';
 import 'package:newsapp/ui/view/home/profile/fillprofile/view/fillprofile_view.dart';
-import 'package:newsapp/ui/view/home/home_view.dart';
+import 'package:newsapp/ui/view/home/home/view/home_view.dart';
 import 'package:newsapp/ui/view/authenticate/splash/splash_view.dart';
 import 'package:newsapp/ui/view/home/profile/selectnewssource/view/selectnewssource.dart';
 import 'package:newsapp/ui/view/home/profile/selecttopics/view/selecttopics.dart';

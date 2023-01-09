@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:newsapp/ui/view/home/home_view.dart';
+import 'package:newsapp/ui/view/home/home/view/home_view.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
   const CustomBottomNavigationBar({super.key});

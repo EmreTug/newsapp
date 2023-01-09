@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:newsapp/core/constants/AppConstants.dart';
-import 'package:newsapp/ui/view/home/home_view.dart';
+import 'package:newsapp/ui/view/home/home/view/home_view.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -18,7 +18,7 @@ class _SplashViewState extends State<SplashView> {
       await Future.delayed(const Duration(milliseconds: 2500));
 
       if (!context.mounted) return;
-      Navigator.pushNamed(context, 'onboard');
+      Navigator.pushNamed(context, 'bottomnavigationbar');
     });
   }
 
