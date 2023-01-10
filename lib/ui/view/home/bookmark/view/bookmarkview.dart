@@ -1,0 +1,92 @@
+import 'package:flutter/material.dart';
+import 'package:newsapp/ui/shared/ui_helpers.dart';
+import 'package:newsapp/ui/view/home/home/view/home_view.dart';
+import 'package:newsapp/ui/widgets/custom_text.dart';
+
+class BookMark extends StatelessWidget {
+  const BookMark({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+              horizontal: UIHelper.HorizontalSpaceMedium),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: const [
+              CustomText(
+                text: "Bookmark",
+                fontSize: 32,
+                weight: FontWeight.w700,
+                color: Colors.black,
+              ),
+              //searchbar
+              LatestWidget(
+                  country: "USA",
+                  authorLogo: "logo",
+                  title: "Russian warship: Moskva sinks in Black Sea",
+                  authorName: "CNBC",
+                  imagePath: "latest"),
+              SizedBox(
+                height: 10,
+              ),
+
+              LatestWidget(
+                  country: "USA",
+                  authorLogo: "logo",
+                  title:
+                      "Ukraine's President Zelensky to BBC: Blood money being paid...",
+                  authorName: "CNBC",
+                  imagePath: "latest"),
+              SizedBox(
+                height: 10,
+              ),
+
+              LatestWidget(
+                  country: "USA",
+                  authorLogo: "logo",
+                  title:
+                      "Her train broke down. Her phone died. And then she met her...",
+                  authorName: "CNBC",
+                  imagePath: "latest"),
+              SizedBox(
+                height: 10,
+              ),
+
+              LatestWidget(
+                  country: "USA",
+                  authorLogo: "logo",
+                  title: "Russian warship: Moskva sinks in Black Sea",
+                  authorName: "CNBC",
+                  imagePath: "latest"),
+              SizedBox(
+                height: 10,
+              ),
+              LatestWidget(
+                  country: "USA",
+                  authorLogo: "logo",
+                  title: "Russian warship: Moskva sinks in Black Sea",
+                  authorName: "CNBC",
+                  imagePath: "latest"),
+              SizedBox(
+                height: 10,
+              ),
+              LatestWidget(
+                  country: "USA",
+                  authorLogo: "logo",
+                  title: "Russian warship: Moskva sinks in Black Sea",
+                  authorName: "CNBC",
+                  imagePath: "latest"),
+              SizedBox(
+                height: 10,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
