@@ -6,12 +6,13 @@ import 'package:newsapp/ui/view/authenticate/login/view/login_view.dart';
 import 'package:newsapp/ui/view/authenticate/onboard/view/onboard_view.dart';
 import 'package:newsapp/ui/view/authenticate/register/view/register_view.dart';
 import 'package:newsapp/ui/view/bottom_navigation_bar.dart';
+import 'package:newsapp/ui/view/home/notification/view/notificationview.dart';
 import 'package:newsapp/ui/view/home/profile/fillprofile/view/fillprofile_view.dart';
 import 'package:newsapp/ui/view/home/home/view/home_view.dart';
 import 'package:newsapp/ui/view/authenticate/splash/splash_view.dart';
 import 'package:newsapp/ui/view/home/profile/selectnewssource/view/selectnewssource.dart';
 import 'package:newsapp/ui/view/home/profile/selecttopics/view/selecttopics.dart';
-import 'package:newsapp/ui/view/home/trading/view/tradingview.dart';
+import 'package:newsapp/ui/view/home/trending/view/trendingview.dart';
 
 const String initialRoute = "splash";
 
@@ -55,7 +56,7 @@ class Router {
       case 'explore':
         return MaterialPageRoute(builder: (_) => const FillProfile());
       case 'notification':
-        return MaterialPageRoute(builder: (_) => const FillProfile());
+        return MaterialPageRoute(builder: (_) => const NotificationView());
       case 'profile':
         return MaterialPageRoute(builder: (_) => const FillProfile());
       case 'editprofile':
@@ -63,7 +64,7 @@ class Router {
       case 'settings':
         return MaterialPageRoute(builder: (_) => const FillProfile());
       case 'trending':
-        return MaterialPageRoute(builder: (_) => const TradingView());
+        return MaterialPageRoute(builder: (_) => const TrendingView());
       default:
         return MaterialPageRoute(
             builder: (_) => Scaffold(

@@ -99,10 +99,24 @@ class HomeView extends StatelessWidget {
                             },
                           ),
                         ),
-                        LatestWidget(country: country, authorLogo: authorLogo, title: title, authorName: authorName, imagePath: "latest")
-                        ,LatestWidget(country: country, authorLogo: authorLogo, title: title, authorName: authorName, imagePath: "latest")
-                        ,LatestWidget(country: country, authorLogo: authorLogo, title: title, authorName: authorName, imagePath: "latest")
-                      ,
+                        LatestWidget(
+                            country: country,
+                            authorLogo: authorLogo,
+                            title: title,
+                            authorName: authorName,
+                            imagePath: "latest"),
+                        LatestWidget(
+                            country: country,
+                            authorLogo: authorLogo,
+                            title: title,
+                            authorName: authorName,
+                            imagePath: "latest"),
+                        LatestWidget(
+                            country: country,
+                            authorLogo: authorLogo,
+                            title: title,
+                            authorName: authorName,
+                            imagePath: "latest"),
                       ],
                     ),
                   ),
@@ -118,8 +132,12 @@ class HomeView extends StatelessWidget {
 
 class LatestWidget extends StatelessWidget {
   const LatestWidget({
-    super.key, required this.country, required this.authorLogo, required this.title, required this.authorName, required this.imagePath,
-  
+    super.key,
+    required this.country,
+    required this.authorLogo,
+    required this.title,
+    required this.authorName,
+    required this.imagePath,
   });
 
   final String country;

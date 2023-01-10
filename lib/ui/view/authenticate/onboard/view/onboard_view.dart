@@ -63,7 +63,7 @@ class _OnBoardViewState extends State<OnBoardView> {
                         if (model.isLastPage) {
                           Navigator.pushNamedAndRemoveUntil(
                             context,
-                            "login",
+                            "notification",
                             (route) => false,
                           );
                         } else {

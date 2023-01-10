@@ -18,7 +18,7 @@ class HomePageTittleCard extends StatelessWidget {
           CustomText(text: text, weight: FontWeight.w600, fontSize: 16),
           InkWell(
             onTap: () {
-              Navigator.pushNamed(context, "trading");
+              Navigator.pushNamed(context, "trending");
             },
             child: const CustomText(
               text: "See all",
