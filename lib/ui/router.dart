@@ -11,6 +11,7 @@ import 'package:newsapp/ui/view/home/home/view/home_view.dart';
 import 'package:newsapp/ui/view/authenticate/splash/splash_view.dart';
 import 'package:newsapp/ui/view/home/profile/selectnewssource/view/selectnewssource.dart';
 import 'package:newsapp/ui/view/home/profile/selecttopics/view/selecttopics.dart';
+import 'package:newsapp/ui/view/home/trading/view/tradingview.dart';
 
 const String initialRoute = "splash";
 
@@ -61,8 +62,8 @@ class Router {
         return MaterialPageRoute(builder: (_) => const FillProfile());
       case 'settings':
         return MaterialPageRoute(builder: (_) => const FillProfile());
-      case 'trading':
-        return MaterialPageRoute(builder: (_) => const FillProfile());
+      case 'trending':
+        return MaterialPageRoute(builder: (_) => const TradingView());
       default:
         return MaterialPageRoute(
             builder: (_) => Scaffold(

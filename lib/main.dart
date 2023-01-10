@@ -34,6 +34,8 @@ class MyApp extends StatelessWidget {
               elevation: 0,
           backgroundColor: Colors.transparent,
           systemOverlayStyle: SystemUiOverlayStyle.dark,
+        centerTitle: true,
+
           ),
            scaffoldBackgroundColor: Colors.white
         ),
