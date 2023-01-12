@@ -9,6 +9,7 @@ import 'package:newsapp/ui/view/bottom_navigation_bar.dart';
 import 'package:newsapp/ui/view/home/detail/view/detail_view.dart';
 import 'package:newsapp/ui/view/home/explore/view/explore_view.dart';
 import 'package:newsapp/ui/view/home/notification/view/notificationview.dart';
+import 'package:newsapp/ui/view/home/profile/editprofile/view/editprofile_view.dart';
 import 'package:newsapp/ui/view/home/profile/fillprofile/view/fillprofile_view.dart';
 import 'package:newsapp/ui/view/home/home/view/home_view.dart';
 import 'package:newsapp/ui/view/authenticate/splash/splash_view.dart';
@@ -62,7 +63,7 @@ class Router {
       case 'profile':
         return MaterialPageRoute(builder: (_) => const FillProfile());
       case 'editprofile':
-        return MaterialPageRoute(builder: (_) => const FillProfile());
+        return MaterialPageRoute(builder: (_) => const EditProfile());
       case 'settings':
         return MaterialPageRoute(builder: (_) => const FillProfile());
       case 'trending':
