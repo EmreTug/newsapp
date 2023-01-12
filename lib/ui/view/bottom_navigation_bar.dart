@@ -5,6 +5,7 @@ import 'package:newsapp/ui/view/home/home/view/home_view.dart';
 import 'home/authorprofile/view/authorprofile_view.dart';
 import 'home/bookmark/view/bookmarkview.dart';
 import 'home/explore/view/explore_view.dart';
+import 'home/profile/view/profile_view.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
   const CustomBottomNavigationBar({super.key});
@@ -20,7 +21,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
     HomeView(),
     ExploreView(),
     BookMark(),
-    AuthorProfile(),
+    ProfileView(),
   ];
 
   void _onItemTapped(int index) {

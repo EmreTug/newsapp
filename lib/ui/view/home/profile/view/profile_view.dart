@@ -7,28 +7,33 @@ import 'package:newsapp/ui/widgets/custom_text.dart';
 
 import '../../../../widgets/news.dart';
 
-class AuthorProfile extends StatelessWidget {
-  const AuthorProfile({super.key});
+class ProfileView extends StatelessWidget {
+  const ProfileView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-       leading: IconButton(
-    icon: const Icon(Icons.arrow_back, color: Colors.black),
-    onPressed: () => Navigator.of(context).pop(),
-  ), 
+        title: const CustomText(
+          text: "Profile",
+          fontSize: 16,
+          weight: FontWeight.w400,
+          color: Colors.black,
+        ),
         actions: [
           IconButton(
               onPressed: () {},
               icon: const Icon(
-                Icons.more_vert_outlined,
+                Icons.settings_outlined,
                 color: Colors.black,
                 size: 24,
               ))
         ],
       ),
-      
+      floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          backgroundColor: const Color(0xff1877F2),
+          child: const Icon(Icons.add)),
       body: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: UIHelper.HorizontalSpaceMedium,
@@ -102,7 +107,7 @@ class AuthorProfile extends StatelessWidget {
                 SizedBox(
                     width: (MediaQuery.of(context).size.width / 2) - 40,
                     child: const CustomButtonFullWidth(
-                      text: "Following",
+                      text: "Edit Profile",
                     )),
                 SizedBox(
                     width: (MediaQuery.of(context).size.width / 2) - 40,

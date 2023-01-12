@@ -6,6 +6,7 @@ import 'package:newsapp/ui/view/authenticate/login/view/login_view.dart';
 import 'package:newsapp/ui/view/authenticate/onboard/view/onboard_view.dart';
 import 'package:newsapp/ui/view/authenticate/register/view/register_view.dart';
 import 'package:newsapp/ui/view/bottom_navigation_bar.dart';
+import 'package:newsapp/ui/view/home/authorprofile/view/authorprofile_view.dart';
 import 'package:newsapp/ui/view/home/detail/view/detail_view.dart';
 import 'package:newsapp/ui/view/home/explore/view/explore_view.dart';
 import 'package:newsapp/ui/view/home/notification/view/notificationview.dart';
@@ -50,7 +51,7 @@ class Router {
       case 'addnews':
         return MaterialPageRoute(builder: (_) => const FillProfile());
       case 'authorprofile':
-        return MaterialPageRoute(builder: (_) => const FillProfile());
+        return MaterialPageRoute(builder: (_) => const AuthorProfile());
       case 'bookmark':
         return MaterialPageRoute(builder: (_) => const FillProfile());
       case 'comment':

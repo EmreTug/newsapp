@@ -18,7 +18,7 @@ class _SplashViewState extends State<SplashView> {
       await Future.delayed(const Duration(milliseconds: 2500));
 
       if (!context.mounted) return;
-      Navigator.pushNamed(context, 'settings');
+      Navigator.pushNamed(context, 'authorprofile');
     });
   }
 
