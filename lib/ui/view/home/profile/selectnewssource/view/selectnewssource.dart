@@ -114,7 +114,7 @@ class _SelectNewsSourceState extends State<SelectNewsSource> {
             Padding(
               padding:
                   const EdgeInsets.only(bottom: UIHelper.HorizontalSpaceSmall),
-              child: customButton(
+              child: CustomButtonFullWidth(
                 text: "Next",
                 click: () {
                   Navigator.pushNamed(context, "fillprofile");

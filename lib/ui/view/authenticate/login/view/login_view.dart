@@ -170,7 +170,7 @@ class _LoginViewState extends State<LoginView> {
                     bottom: UIHelper.HorizontalSpaceMedium),
                 child: model.state == ViewState.Busy
                     ? const CircularProgressIndicator()
-                    : customButton(
+                    : CustomButtonFullWidth(
                         text: login,
                         click: () async {
                           var result = await model.login(

@@ -38,7 +38,7 @@ class SuccessView extends StatelessWidget {
                 ),
               ],
             ),
-              customButton(text: "Go To Login",click: () {
+              CustomButtonFullWidth(text: "Go To Login",click: () {
                 Navigator.pushNamedAndRemoveUntil(context, "login", (route) => false);
               },)
           ],

@@ -99,7 +99,7 @@ class _ForgotPasswordMailState extends State<ForgotPasswordMail> {
                   padding: const EdgeInsets.only(
                     bottom: UIHelper.HorizontalSpaceMedium,
                   ),
-                  child:model.state==ViewState.Busy?const CircularProgressIndicator(): customButton(text: "Submit",click: () {
+                  child:model.state==ViewState.Busy?const CircularProgressIndicator(): CustomButtonFullWidth(text: "Submit",click: () {
                    model.forgotPassword(email);
                    Navigator.pushNamed(context, "success");
                   },),

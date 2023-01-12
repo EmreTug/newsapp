@@ -16,13 +16,11 @@ class CustomText extends StatelessWidget {
   final FontWeight weight;
   final Color? color;
   final int? maxLines;
-
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
-      maxLines: maxLines ?? 1,
-      overflow: TextOverflow.ellipsis,
+      maxLines: maxLines,
       style: GoogleFonts.poppins(
           fontSize: fontSize, fontWeight: weight, color: color),
     );

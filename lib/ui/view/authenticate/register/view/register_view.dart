@@ -145,7 +145,7 @@ class _RegisterViewState extends State<RegisterView> {
                 padding: const EdgeInsets.only(
                     top: UIHelper.HorizontalSpaceMedium,
                     bottom: UIHelper.HorizontalSpaceMedium),
-                child:(model.state==ViewState.Busy)?const CircularProgressIndicator(): customButton(text: signup,click: () async{
+                child:(model.state==ViewState.Busy)?const CircularProgressIndicator(): CustomButtonFullWidth(text: signup,click: () async{
                  var result= await model.register(_emailcontroller.text, _passwordcontroller.text);
                  if(!context.mounted)return;
                   (result)?Navigator.pushNamedAndRemoveUntil(context, "/",(route) => false,):print(model.errorMessage);

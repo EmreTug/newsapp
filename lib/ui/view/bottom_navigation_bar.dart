@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:newsapp/ui/view/home/detail/view/detail_view.dart';
 import 'package:newsapp/ui/view/home/home/view/home_view.dart';
 
 import 'home/bookmark/view/bookmarkview.dart';
@@ -18,7 +19,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
     HomeView(),
     ExploreView(),
     BookMark(),
-    HomeView(),
+    DetailView(),
   ];
 
   void _onItemTapped(int index) {

@@ -137,7 +137,7 @@ class FillProfile extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(
                     bottom: UIHelper.HorizontalSpaceSmall),
-                child: customButton(
+                child: CustomButtonFullWidth(
                   text: "Next",
                   click: () {
                     Navigator.pushNamedAndRemoveUntil(

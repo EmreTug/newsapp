@@ -72,7 +72,7 @@ int? selectedIndex;
                   padding: const EdgeInsets.only(
                     bottom: UIHelper.HorizontalSpaceMedium,
                   ),
-                  child: customButton(text: "Submit",click: () {
+                  child: CustomButtonFullWidth(text: "Submit",click: () {
                     if (selectedIndex==0) {
                       Navigator.pushNamed(context, "forgotpasswordmail");
                       

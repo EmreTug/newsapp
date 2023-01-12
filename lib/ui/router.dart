@@ -6,6 +6,7 @@ import 'package:newsapp/ui/view/authenticate/login/view/login_view.dart';
 import 'package:newsapp/ui/view/authenticate/onboard/view/onboard_view.dart';
 import 'package:newsapp/ui/view/authenticate/register/view/register_view.dart';
 import 'package:newsapp/ui/view/bottom_navigation_bar.dart';
+import 'package:newsapp/ui/view/home/detail/view/detail_view.dart';
 import 'package:newsapp/ui/view/home/explore/view/explore_view.dart';
 import 'package:newsapp/ui/view/home/notification/view/notificationview.dart';
 import 'package:newsapp/ui/view/home/profile/fillprofile/view/fillprofile_view.dart';
@@ -53,7 +54,7 @@ class Router {
       case 'comment':
         return MaterialPageRoute(builder: (_) => const FillProfile());
       case 'detail':
-        return MaterialPageRoute(builder: (_) => const FillProfile());
+        return MaterialPageRoute(builder: (_) => const DetailView());
       case 'explore':
         return MaterialPageRoute(builder: (_) => const ExploreView());
       case 'notification':
