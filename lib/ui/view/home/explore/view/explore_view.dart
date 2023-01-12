@@ -12,19 +12,19 @@ class ExploreView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(title: const CustomText(
+          text: "Explore",
+          fontSize: 16,
+          weight: FontWeight.w400,
+          color: Colors.black,
+        ),),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(
             horizontal: UIHelper.HorizontalSpaceMedium),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: const [
-            CustomText(
-              text: "Explore",
-              fontSize: 32,
-              weight: FontWeight.w700,
-              color: Colors.black,
-            ),
+          
             HomePageTittleCard(text: "Topic"),
             //searchbar
             TopicCard(),

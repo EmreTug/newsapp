@@ -11,7 +11,12 @@ class BookMark extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(title: const CustomText(
+          text: "Bookmark",
+          fontSize: 16,
+          weight: FontWeight.w400,
+          color: Colors.black,
+        ),),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(
@@ -19,12 +24,7 @@ class BookMark extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: const [
-              CustomText(
-                text: "Bookmark",
-                fontSize: 32,
-                weight: FontWeight.w700,
-                color: Colors.black,
-              ),
+             
               //searchbar
               LatestCard(
                   country: "USA",
