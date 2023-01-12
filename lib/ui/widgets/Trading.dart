@@ -18,10 +18,10 @@ class TradingWidget extends StatelessWidget {
       children: [
         HomePageTittleCard(text: title),
         const NewsWidget(
-            imagePath: "assets/images/example.png",
+            imagePath: "example",
             country: "Europe",
             title: "Russian warship: Moskva sinks in Black Sea",
-            authorlogoPath: "assets/images/logo.png",
+            authorlogoPath: "logo",
             author: "BBC News"),
       ],
     );

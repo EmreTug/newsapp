@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:newsapp/core/extension/imageextension.dart';
 
 import 'custom_text.dart';
 
@@ -21,7 +22,7 @@ class NewsWidget extends StatelessWidget {
         Padding(
       padding: const EdgeInsets.symmetric(vertical:4.0),
           child: Center(
-            child: Image.asset(imagePath,
+            child: Image.asset(imagePath.getimage(),
                 width: MediaQuery.of(context).size.width,
                 height: 180,
                 fit: BoxFit.fitWidth),
@@ -48,7 +49,7 @@ class NewsWidget extends StatelessWidget {
               children:  [
                 Padding(
                   padding: const EdgeInsets.only(right:8.0),
-                  child: Image.asset(authorlogoPath),
+                  child: Image.asset(authorlogoPath.getimage()),
                 ),
                  CustomText(
                   text: author,

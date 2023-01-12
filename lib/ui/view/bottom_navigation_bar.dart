@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:newsapp/ui/view/home/home/view/home_view.dart';
 
 import 'home/bookmark/view/bookmarkview.dart';
+import 'home/explore/view/explore_view.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
   const CustomBottomNavigationBar({super.key});
@@ -15,7 +16,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   int _selectedIndex = 0;
   static const List<Widget> _widgetOptions = <Widget>[
     HomeView(),
-    HomeView(),
+    ExploreView(),
     BookMark(),
     HomeView(),
   ];

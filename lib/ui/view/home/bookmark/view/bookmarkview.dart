@@ -3,6 +3,8 @@ import 'package:newsapp/ui/shared/ui_helpers.dart';
 import 'package:newsapp/ui/view/home/home/view/home_view.dart';
 import 'package:newsapp/ui/widgets/custom_text.dart';
 
+import '../../../widget/latestcart.dart';
+
 class BookMark extends StatelessWidget {
   const BookMark({super.key});
 
@@ -24,7 +26,7 @@ class BookMark extends StatelessWidget {
                 color: Colors.black,
               ),
               //searchbar
-              LatestWidget(
+              LatestCard(
                   country: "USA",
                   authorLogo: "logo",
                   title: "Russian warship: Moskva sinks in Black Sea",
@@ -34,7 +36,7 @@ class BookMark extends StatelessWidget {
                 height: 10,
               ),
 
-              LatestWidget(
+              LatestCard(
                   country: "USA",
                   authorLogo: "logo",
                   title:
@@ -45,7 +47,7 @@ class BookMark extends StatelessWidget {
                 height: 10,
               ),
 
-              LatestWidget(
+              LatestCard(
                   country: "USA",
                   authorLogo: "logo",
                   title:
@@ -56,7 +58,7 @@ class BookMark extends StatelessWidget {
                 height: 10,
               ),
 
-              LatestWidget(
+              LatestCard(
                   country: "USA",
                   authorLogo: "logo",
                   title: "Russian warship: Moskva sinks in Black Sea",
@@ -65,7 +67,7 @@ class BookMark extends StatelessWidget {
               SizedBox(
                 height: 10,
               ),
-              LatestWidget(
+              LatestCard(
                   country: "USA",
                   authorLogo: "logo",
                   title: "Russian warship: Moskva sinks in Black Sea",
@@ -74,7 +76,7 @@ class BookMark extends StatelessWidget {
               SizedBox(
                 height: 10,
               ),
-              LatestWidget(
+              LatestCard(
                   country: "USA",
                   authorLogo: "logo",
                   title: "Russian warship: Moskva sinks in Black Sea",
