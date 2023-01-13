@@ -6,7 +6,9 @@ import 'package:newsapp/ui/view/authenticate/login/view/login_view.dart';
 import 'package:newsapp/ui/view/authenticate/onboard/view/onboard_view.dart';
 import 'package:newsapp/ui/view/authenticate/register/view/register_view.dart';
 import 'package:newsapp/ui/view/bottom_navigation_bar.dart';
+import 'package:newsapp/ui/view/home/addnews/view/addnews_view.dart';
 import 'package:newsapp/ui/view/home/authorprofile/view/authorprofile_view.dart';
+import 'package:newsapp/ui/view/home/bookmark/view/bookmarkview.dart';
 import 'package:newsapp/ui/view/home/detail/view/detail_view.dart';
 import 'package:newsapp/ui/view/home/explore/view/explore_view.dart';
 import 'package:newsapp/ui/view/home/notification/view/notificationview.dart';
@@ -17,6 +19,7 @@ import 'package:newsapp/ui/view/authenticate/splash/splash_view.dart';
 import 'package:newsapp/ui/view/home/profile/selectnewssource/view/selectnewssource.dart';
 import 'package:newsapp/ui/view/home/profile/selecttopics/view/selecttopics.dart';
 import 'package:newsapp/ui/view/home/profile/settings/view/settings_view.dart';
+import 'package:newsapp/ui/view/home/profile/view/profile_view.dart';
 import 'package:newsapp/ui/view/home/trending/view/trendingview.dart';
 
 const String initialRoute = "splash";
@@ -25,7 +28,8 @@ class Router {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case 'bottomnavigationbar':
-      return MaterialPageRoute(builder: (_)=>const CustomBottomNavigationBar());
+        return MaterialPageRoute(
+            builder: (_) => const CustomBottomNavigationBar());
       case '/':
         return MaterialPageRoute(builder: (_) => const HomeView());
       case 'splash':
@@ -49,13 +53,13 @@ class Router {
       case 'fillprofile':
         return MaterialPageRoute(builder: (_) => const FillProfile());
       case 'addnews':
-        return MaterialPageRoute(builder: (_) => const FillProfile());
+        return MaterialPageRoute(builder: (_) => const AddNews());
       case 'authorprofile':
         return MaterialPageRoute(builder: (_) => const AuthorProfile());
       case 'bookmark':
-        return MaterialPageRoute(builder: (_) => const FillProfile());
-      case 'comment':
-        return MaterialPageRoute(builder: (_) => const FillProfile());
+        return MaterialPageRoute(builder: (_) => const BookMark());
+      // case 'comment':
+      //   return MaterialPageRoute(builder: (_) => const FillProfile());
       case 'detail':
         return MaterialPageRoute(builder: (_) => const DetailView());
       case 'explore':
@@ -63,7 +67,7 @@ class Router {
       case 'notification':
         return MaterialPageRoute(builder: (_) => const NotificationView());
       case 'profile':
-        return MaterialPageRoute(builder: (_) => const FillProfile());
+        return MaterialPageRoute(builder: (_) => const ProfileView());
       case 'editprofile':
         return MaterialPageRoute(builder: (_) => const EditProfile());
       case 'settings':
