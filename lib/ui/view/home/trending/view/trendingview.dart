@@ -24,23 +24,24 @@ class TrendingView extends StatelessWidget {
           child: Column(
             children:const [
               NewsWidget(
-                  imagePath: "assets/images/example.png",
+                  imagePath: "example",
                   country: "Europe",
                   title: "Russian warship: Moskva sinks in Black Sea",
-                  authorlogoPath: "assets/images/logo.png",
+                  authorlogoPath: "logo",
                   author: "BBC News"),
-              NewsWidget(
-                  imagePath: "assets/images/example.png",
+                  NewsWidget(
+                  imagePath: "example",
                   country: "Europe",
                   title: "Russian warship: Moskva sinks in Black Sea",
-                  authorlogoPath: "assets/images/logo.png",
+                  authorlogoPath: "logo",
                   author: "BBC News"),
-              NewsWidget(
-                  imagePath: "assets/images/example.png",
+                  NewsWidget(
+                  imagePath: "example",
                   country: "Europe",
                   title: "Russian warship: Moskva sinks in Black Sea",
-                  authorlogoPath: "assets/images/logo.png",
+                  authorlogoPath: "logo",
                   author: "BBC News"),
+             
             ],
           ),
         ),

@@ -37,6 +37,9 @@ class DetailView extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     ListTile(
+                      onTap: () {
+                        Navigator.pushNamed(context, "authorprofile");
+                      },
                       leading: Image.asset(
                         "logo".getimage(),
                         height: 50,
@@ -90,19 +93,21 @@ class DetailView extends StatelessWidget {
             ),
             SizedBox(
               height: 75,
-              
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
-                children:const [
-                  Icon(Icons.favorite,size: 24,color: Color(0xffED2E7E),),
+                children: const [
+                  Icon(
+                    Icons.favorite,
+                    size: 24,
+                    color: Color(0xffED2E7E),
+                  ),
                   CustomText(
                       text: "24.5K", fontSize: 16, weight: FontWeight.w400),
                   Padding(
-                    padding:  EdgeInsets.only(left: 10),
+                    padding: EdgeInsets.only(left: 10),
                     child: Icon(Icons.comment_outlined),
                   ),
-                  CustomText(
-                      text: "1K", fontSize: 16, weight: FontWeight.w400),
+                  CustomText(text: "1K", fontSize: 16, weight: FontWeight.w400),
                   Spacer(),
                   Icon(
                     Icons.bookmark,

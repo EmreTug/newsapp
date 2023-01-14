@@ -28,7 +28,7 @@ class HomeView extends StatelessWidget {
             style: TextStyle(color: Colors.black, fontSize: 15),
           )),
           actions: [
-            _buildActions()
+            _buildActions(context)
           ],
         ),
         body: SingleChildScrollView(
@@ -46,7 +46,9 @@ class HomeView extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const HomePageTittleCard(text: "Latest"),
+                         HomePageTittleCard(text: "Latest",click: () {
+                          Navigator.pushNamed(context, "latest");
+                        },),
                         SizedBox(
                           height: 30,
                           child: _buildTopicsList(model),
@@ -118,7 +120,7 @@ class HomeView extends StatelessWidget {
                         );
   }
 
-  Center _buildActions() {
+  Center _buildActions(BuildContext context) {
     return Center(
             child: Container(
                 margin: const EdgeInsets.only(right: 31),
@@ -127,10 +129,17 @@ class HomeView extends StatelessWidget {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(6),
                     border: Border.all(width: 0.3, color: Colors.black)),
-                child: const Icon(
-                  Icons.notifications_outlined,
-                  color: Colors.black,
-                  size: 22,
+                child:  InkWell(
+                  onTap: () {
+                    Navigator.pushNamed(context, "notification");
+                    
+                  },
+                  child: const Icon(
+                      Icons.notifications_outlined,
+                      color: Colors.black,
+                      size: 22,
+                    
+                  ),
                 )),
           );
   }

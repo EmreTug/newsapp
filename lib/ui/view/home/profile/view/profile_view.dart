@@ -22,7 +22,9 @@ class ProfileView extends StatelessWidget {
         ),
         actions: [
           IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, "settings");
+              },
               icon: const Icon(
                 Icons.settings_outlined,
                 color: Colors.black,
@@ -31,7 +33,9 @@ class ProfileView extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushNamed(context, "addnews");
+          },
           backgroundColor: const Color(0xff1877F2),
           child: const Icon(Icons.add)),
       body: Padding(
@@ -106,8 +110,12 @@ class ProfileView extends StatelessWidget {
               children: [
                 SizedBox(
                     width: (MediaQuery.of(context).size.width / 2) - 40,
-                    child: const CustomButtonFullWidth(
+                    child:  CustomButtonFullWidth(
                       text: "Edit Profile",
+                      click: () {
+                  Navigator.pushNamed(context, "editprofile");
+                        
+                      },
                     )),
                 SizedBox(
                     width: (MediaQuery.of(context).size.width / 2) - 40,

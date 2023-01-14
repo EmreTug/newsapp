@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'custom_text.dart';
 
 class HomePageTittleCard extends StatelessWidget {
-  const HomePageTittleCard({super.key, required this.text});
-
+  const HomePageTittleCard({super.key, required this.text, required this.click});
+  final void Function() click;
   final String text;
 
   @override
@@ -18,7 +18,7 @@ class HomePageTittleCard extends StatelessWidget {
           CustomText(text: text, weight: FontWeight.w600, fontSize: 16),
           InkWell(
             onTap: () {
-              Navigator.pushNamed(context, "trending");
+              click();
             },
             child: const CustomText(
               text: "See all",

@@ -23,15 +23,17 @@ class ExploreView extends StatelessWidget {
             horizontal: UIHelper.HorizontalSpaceMedium),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children:  [
           
-            HomePageTittleCard(text: "Topic"),
+            HomePageTittleCard(text: "Topic",click: () {
+              Navigator.pushNamed(context, "topic");
+            },),
             //searchbar
-            TopicCard(),
-            TopicCard(),
-            TopicCard(),
-          CustomText(text: "Popular Topic", weight: FontWeight.w600, fontSize: 16),
-          NewsWidget(imagePath: "example", country: "country", title: "title", authorlogoPath: "logo", author: "author")
+            const TopicCard(),
+            const TopicCard(),
+            const TopicCard(),
+          const CustomText(text: "Popular Topic", weight: FontWeight.w600, fontSize: 16),
+          const NewsWidget(imagePath: "example", country: "country", title: "title", authorlogoPath: "logo", author: "author")
 
           ],
         ),

@@ -16,7 +16,9 @@ class TradingWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        HomePageTittleCard(text: title),
+        HomePageTittleCard(text: title,click: () {
+          Navigator.pushNamed(context, "trending");
+        },),
         const NewsWidget(
             imagePath: "example",
             country: "Europe",
