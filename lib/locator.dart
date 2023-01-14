@@ -5,6 +5,7 @@ import 'package:newsapp/ui/view/authenticate/forgotpassword/viewmodel/forgotpass
 import 'package:newsapp/ui/view/authenticate/login/viewmodel/login_viewmodel.dart';
 import 'package:newsapp/ui/view/authenticate/onboard/viewmodel/onboardviewmodel.dart';
 import 'package:newsapp/ui/view/authenticate/register/viewmodel/register_viewmodel.dart';
+import 'package:newsapp/ui/view/home/addnews/viewmodel/addnews_viewmodel.dart';
 import 'package:newsapp/ui/view/home/home/viewmodel/home_viewmodel.dart';
 import 'package:newsapp/ui/view/home/profile/fillprofile/viewmodel/fillprofileviewmodel.dart';
 import 'package:newsapp/ui/view/home/profile/selectnewssource/viewmodel/selectnewssourceviewmodel.dart';
@@ -25,7 +26,7 @@ void setupLocator() {
   locator.registerFactory(() => FillProfileModel());
   locator.registerFactory(() => HomeModel());
   // locator.registerFactory(() => BookmarkModel());
-  // locator.registerFactory(() => AddNewsModel());
+  locator.registerFactory(() => AddNewsModel());
   // locator.registerFactory(() => AuthorProfileModel());
   // locator.registerFactory(() => CommentModel());
   // locator.registerFactory(() => DetailModel());
