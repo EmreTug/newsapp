@@ -52,6 +52,7 @@ dependencies:
   country_list_pick: ^1.0.1+6
   image_picker: ^0.8.6
   dotted_border: ^2.0.0+3
+  firebase_storage: ^11.0.10
 dev_dependencies:
   flutter_test:
     sdk: flutter

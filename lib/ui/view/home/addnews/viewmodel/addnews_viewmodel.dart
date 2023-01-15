@@ -1,11 +1,16 @@
 import 'dart:io';
 
 import 'package:image_picker/image_picker.dart';
+import 'package:newsapp/core/services/newsservices.dart';
 import 'package:newsapp/core/viewmodel/base_model.dart';
 
+import '../../../../../core/model/news.dart';
+import '../../../../../locator.dart';
+
 class AddNewsModel extends BaseModel {
-   File _imageFile=File("");
-  File get getImageFile=>_imageFile;
+  final NewsService _newsService = locator<NewsService>();
+  File _imageFile = File("");
+  File get getImageFile => _imageFile;
   Future<void> getImage() async {
     final ImagePicker _picker = ImagePicker();
     // Pick an image
@@ -14,5 +19,8 @@ class AddNewsModel extends BaseModel {
       _imageFile = File(image.path);
     }
     notifyListeners();
+  }
+  Future<void> addNews(News news)async{
+      return await _newsService.addAdvert(news);
   }
 }

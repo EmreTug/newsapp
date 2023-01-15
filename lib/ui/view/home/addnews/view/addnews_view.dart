@@ -1,6 +1,8 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:newsapp/core/model/news.dart';
 import 'package:newsapp/ui/shared/ui_helpers.dart';
 import 'package:newsapp/ui/view/widget/custombutton.dart';
 import 'package:newsapp/ui/widgets/custom_text.dart';
@@ -126,9 +128,11 @@ class _AddNewsState extends State<AddNews> {
                   ],
                 ),
                 height: 80,
-                child: const Align(
+                child:  Align(
                   alignment: Alignment.centerRight,
-                  child: CustomButton(text: "Publish", height: 50),
+                  child: CustomButton(text: "Publish", height: 50,click: () async{
+                    await model.addNews(News(_title.text, _description.text, PickedFile(model.getImageFile.path)));
+                  },),
                 ),
               )
             ],

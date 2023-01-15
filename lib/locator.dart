@@ -1,6 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:newsapp/core/services/auth_service.dart';
 import 'package:newsapp/core/services/API.dart';
+import 'package:newsapp/core/services/newsservices.dart';
 import 'package:newsapp/ui/view/authenticate/forgotpassword/viewmodel/forgotpassword_viewmodel.dart';
 import 'package:newsapp/ui/view/authenticate/login/viewmodel/login_viewmodel.dart';
 import 'package:newsapp/ui/view/authenticate/onboard/viewmodel/onboardviewmodel.dart';
@@ -11,12 +12,14 @@ import 'package:newsapp/ui/view/home/home/viewmodel/home_viewmodel.dart';
 import 'package:newsapp/ui/view/home/profile/fillprofile/viewmodel/fillprofileviewmodel.dart';
 import 'package:newsapp/ui/view/home/profile/selectnewssource/viewmodel/selectnewssourceviewmodel.dart';
 import 'package:newsapp/ui/view/home/profile/selecttopics/viewmodel/selecttopicsviewmodel.dart';
+import 'package:newsapp/ui/view/home/trending/viewmodel/trending_viewmodel.dart';
 
 GetIt locator = GetIt.instance;
 
 void setupLocator() {
   locator.registerLazySingleton(() => AuthenticationService());
   locator.registerLazySingleton(() => Api());
+  locator.registerLazySingleton(() => NewsService());
 
   locator.registerFactory(() => LoginModel());
   locator.registerFactory(() => RegisterModel());
@@ -35,7 +38,7 @@ void setupLocator() {
   // locator.registerFactory(() => NotificationModel());
   // locator.registerFactory(() => EditProfileModel());
   // locator.registerFactory(() => SettingsModel());
-  // locator.registerFactory(() => TradingModel());
+  locator.registerFactory(() => TrendingModel());
 
 
 

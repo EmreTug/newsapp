@@ -29,7 +29,7 @@ class NewsWidget extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 4.0),
             child: Center(
-              child: Image.asset(imagePath.getimage(),
+              child: Image.network(imagePath,
                   width: MediaQuery.of(context).size.width,
                   height: 180,
                   fit: BoxFit.fitWidth),
