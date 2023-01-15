@@ -32,12 +32,13 @@ class TrendingView extends StatelessWidget {
                 future: model.newsSnapshot,
 
                 builder: (context, snapshot) {
-               if(snapshot.hasData){
+               if(snapshot.data!=null&&snapshot.data!.docs.isNotEmpty){
                  return ListView.builder(
                   shrinkWrap: true,
                   itemCount: snapshot.data!.docs.length,
                   itemBuilder: (context, index) {
                   return NewsWidget(
+                    id:snapshot.data!.docs[index].id,
                       imagePath: snapshot.data!.docs[index]["photoUrl"],
                       country: "Europe",
                       title:snapshot.data!.docs[index]["title"],
@@ -49,8 +50,13 @@ class TrendingView extends StatelessWidget {
                else if(snapshot.connectionState==ConnectionState.waiting){
                 return const Center(child: CircularProgressIndicator(),);
                }
+               else if(snapshot.data!.docs.isEmpty){
+                return const Center(child: Text("Haber Bulunmamaktadır",style: TextStyle(color: Colors.red),),);
+
+               }
+             
                else{
-                return const Center(child: Text("Haber Bulunmamaktadır"),);
+                return const Center(child: Text("Bilinmeyen bir hata oluştu",style: TextStyle(color: Colors.red),),);
                }
               },)
             ),

@@ -52,4 +52,7 @@ class NewsService{
   Future<QuerySnapshot<Map<String, dynamic>>> getNews() async {
     return await _newsReference.get();
   }
+  Future<DocumentSnapshot<Map<String, dynamic>>> getNewsByDocId(String docId) async {
+    return await _newsReference.doc(docId).get();
+  }
 }

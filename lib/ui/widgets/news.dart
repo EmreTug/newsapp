@@ -11,7 +11,9 @@ class NewsWidget extends StatelessWidget {
     required this.title,
     required this.authorlogoPath,
     required this.author,
+    required this.id,
   });
+  final String id;
   final String imagePath;
   final String country;
   final String title;
@@ -21,7 +23,7 @@ class NewsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, "detail");
+        Navigator.pushNamed(context, "detail",arguments: id);
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

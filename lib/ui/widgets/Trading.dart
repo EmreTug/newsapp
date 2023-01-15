@@ -20,7 +20,8 @@ class TradingWidget extends StatelessWidget {
           Navigator.pushNamed(context, "trending");
         },),
         const NewsWidget(
-            imagePath: "example",
+          id: "sd",
+            imagePath: "https://firebasestorage.googleapis.com/v0/b/newsapp-9072f.appspot.com/o/files%2FNewsImage%2Fimage_picker1034570809752766955.jpg?alt=media&token=433a7f61-0810-4d86-84c5-6715e169744f",
             country: "Europe",
             title: "Russian warship: Moskva sinks in Black Sea",
             authorlogoPath: "logo",

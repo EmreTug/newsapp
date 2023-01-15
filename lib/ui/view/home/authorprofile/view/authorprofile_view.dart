@@ -158,6 +158,7 @@ class AuthorProfile extends StatelessWidget {
                             itemCount: 10,
                             itemBuilder: (context, index) {
                               return const NewsWidget(
+                                id:"",
                 imagePath: "example",
                 country: "Europe",
                 title: "Russian warship: Moskva sinks in Black Sea",

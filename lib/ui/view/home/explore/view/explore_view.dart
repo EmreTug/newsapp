@@ -33,7 +33,7 @@ class ExploreView extends StatelessWidget {
             const TopicCard(),
             const TopicCard(),
           const CustomText(text: "Popular Topic", weight: FontWeight.w600, fontSize: 16),
-          const NewsWidget(imagePath: "example", country: "country", title: "title", authorlogoPath: "logo", author: "author")
+          const NewsWidget(id: "",imagePath: "example", country: "country", title: "title", authorlogoPath: "logo", author: "author")
 
           ],
         ),

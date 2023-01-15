@@ -61,7 +61,7 @@ class Router {
       // case 'comment':
       //   return MaterialPageRoute(builder: (_) => const FillProfile());
       case 'detail':
-        return MaterialPageRoute(builder: (_) => const DetailView());
+        return MaterialPageRoute(builder: (_) =>  DetailView(arguments:settings.arguments));
       case 'explore':
         return MaterialPageRoute(builder: (_) => const ExploreView());
       case 'notification':
