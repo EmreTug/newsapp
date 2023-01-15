@@ -55,4 +55,9 @@ class NewsService{
   Future<DocumentSnapshot<Map<String, dynamic>>> getNewsByDocId(String docId) async {
     return await _newsReference.doc(docId).get();
   }
+   Future<QuerySnapshot<Map<String, dynamic>>> getNewsByUser() async {
+ final FirebaseAuth _auth =
+          FirebaseAuth.instance;
+    return await _newsReference.where("userUid",isEqualTo:_auth.currentUser!.uid).get();
+  }
 }

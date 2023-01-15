@@ -33,8 +33,8 @@ class LatestCard extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.only(right: 4.0),
-              child: Image.asset(
-                imagePath.getimage(),
+              child: Image.network(
+                imagePath,
                 height: 96,
                 width: 96,
                 fit: BoxFit.fill,

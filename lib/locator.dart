@@ -13,6 +13,7 @@ import 'package:newsapp/ui/view/home/home/viewmodel/home_viewmodel.dart';
 import 'package:newsapp/ui/view/home/profile/fillprofile/viewmodel/fillprofileviewmodel.dart';
 import 'package:newsapp/ui/view/home/profile/selectnewssource/viewmodel/selectnewssourceviewmodel.dart';
 import 'package:newsapp/ui/view/home/profile/selecttopics/viewmodel/selecttopicsviewmodel.dart';
+import 'package:newsapp/ui/view/home/profile/viewmodel/profile_viewmodel.dart';
 import 'package:newsapp/ui/view/home/trending/viewmodel/trending_viewmodel.dart';
 
 GetIt locator = GetIt.instance;
@@ -33,6 +34,7 @@ void setupLocator() {
   // locator.registerFactory(() => BookmarkModel());
   locator.registerFactory(() => AddNewsModel());
   locator.registerFactory(() => AuthorProfileModel());
+  locator.registerFactory(() => ProfileModel());
   // locator.registerFactory(() => CommentModel());
   locator.registerFactory(() => DetailModel());
   // locator.registerFactory(() => ExploreModel());
