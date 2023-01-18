@@ -13,8 +13,11 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var title = "Trending";
-    return BaseView<HomeModel>(builder: (context, model, child) {
-      var dsc = "Ukraine's President Zelensky to BBC: Blood money being paid";
+    return BaseView<HomeModel>(
+      onModelReady: (homemodel) {
+        homemodel.fetchNews();
+      },
+      builder: (context, model, child) {
       var authorLogo = "logo";
       var authorName = "BBC NEWS";
       var country = "Europe";
@@ -53,24 +56,23 @@ class HomeView extends StatelessWidget {
                           height: 30,
                           child: _buildTopicsList(model),
                         ),
-                        LatestCard(
+                        FutureBuilder(
+                          future: model.data,
+                          builder: (context, snapshot) {
+                          return ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: snapshot.data!.docs.length,
+                            itemBuilder: (context, index) {
+                            return  LatestCard(
                             country: country,
                             authorLogo: authorLogo,
-                            title: title,
+                            title: snapshot.data!.docs[index]["title"],
                             authorName: authorName,
-                            imagePath: "latest"),
-                        LatestCard(
-                            country: country,
-                            authorLogo: authorLogo,
-                            title: title,
-                            authorName: authorName,
-                            imagePath: "latest"),
-                        LatestCard(
-                            country: country,
-                            authorLogo: authorLogo,
-                            title: title,
-                            authorName: authorName,
-                            imagePath: "latest"),
+                            imagePath: snapshot.data!.docs[index]["photoUrl"]);
+                          },);
+                        },),
+                       
+                  
                       ],
                     ),
                   ),
