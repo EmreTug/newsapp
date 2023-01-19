@@ -27,6 +27,7 @@ class BookMark extends StatelessWidget {
              
               //searchbar
               LatestCard(
+                id:"1",
                   country: "USA",
                   authorLogo: "logo",
                   title: "Russian warship: Moskva sinks in Black Sea",
@@ -37,6 +38,8 @@ class BookMark extends StatelessWidget {
               ),
 
               LatestCard(
+                id:"1",
+
                   country: "USA",
                   authorLogo: "logo",
                   title:
@@ -48,6 +51,8 @@ class BookMark extends StatelessWidget {
               ),
 
               LatestCard(
+                id:"1",
+
                   country: "USA",
                   authorLogo: "logo",
                   title:
@@ -59,6 +64,8 @@ class BookMark extends StatelessWidget {
               ),
 
               LatestCard(
+                id:"1",
+
                   country: "USA",
                   authorLogo: "logo",
                   title: "Russian warship: Moskva sinks in Black Sea",
@@ -68,6 +75,8 @@ class BookMark extends StatelessWidget {
                 height: 10,
               ),
               LatestCard(
+                id:"1",
+
                   country: "USA",
                   authorLogo: "logo",
                   title: "Russian warship: Moskva sinks in Black Sea",
@@ -77,6 +86,8 @@ class BookMark extends StatelessWidget {
                 height: 10,
               ),
               LatestCard(
+                id:"1",
+
                   country: "USA",
                   authorLogo: "logo",
                   title: "Russian warship: Moskva sinks in Black Sea",

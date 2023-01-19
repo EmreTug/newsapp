@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:newsapp/ui/view/home/home/viewmodel/home_viewmodel.dart';
 
 import 'news.dart';
 import 'title.dart';
@@ -7,9 +8,9 @@ import 'title.dart';
 class TradingWidget extends StatelessWidget {
   const TradingWidget({
     super.key,
-    required this.title,
+    required this.title, required this.model,
   });
-
+  final HomeModel model;
   final String title;
 
   @override
@@ -19,13 +20,17 @@ class TradingWidget extends StatelessWidget {
         HomePageTittleCard(text: title,click: () {
           Navigator.pushNamed(context, "trending");
         },),
-        const NewsWidget(
-          id: "sd",
-            imagePath: "https://firebasestorage.googleapis.com/v0/b/newsapp-9072f.appspot.com/o/files%2FNewsImage%2Fimage_picker1034570809752766955.jpg?alt=media&token=433a7f61-0810-4d86-84c5-6715e169744f",
+        FutureBuilder(
+          future: model.data,
+          builder: (context, snapshot) {
+          return  NewsWidget(
+          id: snapshot.data!.docs.first.id,
+            imagePath:snapshot.data!.docs.first["photoUrl"],
             country: "Europe",
-            title: "Russian warship: Moskva sinks in Black Sea",
+            title:snapshot.data!.docs.first["title"],
             authorlogoPath: "logo",
-            author: "BBC News"),
+            author: "BBC News");
+        },)
       ],
     );
   }

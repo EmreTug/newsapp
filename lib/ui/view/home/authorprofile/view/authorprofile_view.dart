@@ -170,6 +170,8 @@ class AuthorProfile extends StatelessWidget {
                             itemCount: 10,
                             itemBuilder: (context, index) {
                               return const LatestCard(
+                id:"1",
+
                                   country: "country",
                                   authorLogo: "logo",
                                   title: "title",

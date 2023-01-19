@@ -12,6 +12,6 @@ class OnBoardBackButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return !isFirstPage? TextButton(
       onPressed: onPressed,
-      child: Text(_getStarted,style: const TextStyle(color:  ColorConstants.OnBoardBackButtonColor),),):const SizedBox();
+      child: Text(_getStarted,style: const TextStyle(color:  Color(0xffB0B3B8)),),):const SizedBox();
   }
 }

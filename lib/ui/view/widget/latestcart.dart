@@ -6,13 +6,14 @@ import '../../widgets/custom_text.dart';
 class LatestCard extends StatelessWidget {
   const LatestCard({
     super.key,
+
     required this.country,
     required this.authorLogo,
     required this.title,
     required this.authorName,
-    required this.imagePath,
+    required this.imagePath, required this.id,
   });
-
+  final String id;
   final String country;
   final String authorLogo;
   final String title;
@@ -23,7 +24,7 @@ class LatestCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, "detail");
+        Navigator.pushNamed(context, "detail",arguments: id);
       },
       child: Container(
         height: 112,

@@ -177,6 +177,7 @@ class ProfileView extends StatelessWidget {
                                 itemCount: snapshot.data!.docs.length,
                                 itemBuilder: (context, index) {
                                   return  LatestCard(
+                                    id: snapshot.data!.docs[index].id,
                                       country: "country",
                                       authorLogo: "logo",
                                       title: snapshot.data!.docs[index]

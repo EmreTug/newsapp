@@ -13,11 +13,9 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var title = "Trending";
-    return BaseView<HomeModel>(
-      onModelReady: (homemodel) {
-        homemodel.fetchNews();
-      },
-      builder: (context, model, child) {
+    return BaseView<HomeModel>(onModelReady: (homemodel) {
+      homemodel.fetchNews();
+    }, builder: (context, model, child) {
       var authorLogo = "logo";
       var authorName = "BBC NEWS";
       var country = "Europe";
@@ -30,9 +28,7 @@ class HomeView extends StatelessWidget {
             "Logo",
             style: TextStyle(color: Colors.black, fontSize: 15),
           )),
-          actions: [
-            _buildActions(context)
-          ],
+          actions: [_buildActions(context)],
         ),
         body: SingleChildScrollView(
           child: Padding(
@@ -43,15 +39,18 @@ class HomeView extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Column(
                 children: [
-                  TradingWidget(title: title),
+                  TradingWidget(title: title,model:model),
                   Padding(
                     padding: const EdgeInsets.only(top: 16.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                         HomePageTittleCard(text: "Latest",click: () {
-                          Navigator.pushNamed(context, "latest");
-                        },),
+                        HomePageTittleCard(
+                          text: "Latest",
+                          click: () {
+                            Navigator.pushNamed(context, "latest");
+                          },
+                        ),
                         SizedBox(
                           height: 30,
                           child: _buildTopicsList(model),
@@ -59,20 +58,30 @@ class HomeView extends StatelessWidget {
                         FutureBuilder(
                           future: model.data,
                           builder: (context, snapshot) {
-                          return ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: snapshot.data!.docs.length,
-                            itemBuilder: (context, index) {
-                            return  LatestCard(
-                            country: country,
-                            authorLogo: authorLogo,
-                            title: snapshot.data!.docs[index]["title"],
-                            authorName: authorName,
-                            imagePath: snapshot.data!.docs[index]["photoUrl"]);
-                          },);
-                        },),
-                       
-                  
+                            if (snapshot.connectionState ==
+                                ConnectionState.waiting) {
+                              return const Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            } else {
+                              return ListView.builder(
+                                shrinkWrap: true,
+                                itemCount: snapshot.data!.docs.length,
+                                itemBuilder: (context, index) {
+                                  return LatestCard(
+                                    id: snapshot.data!.docs[index].id,
+                                      country: country,
+                                      authorLogo: authorLogo,
+                                      title: snapshot.data!.docs[index]
+                                          ["title"],
+                                      authorName: authorName,
+                                      imagePath: snapshot.data!.docs[index]
+                                          ["photoUrl"]);
+                                },
+                              );
+                            }
+                          },
+                        ),
                       ],
                     ),
                   ),
@@ -87,63 +96,56 @@ class HomeView extends StatelessWidget {
 
   ListView _buildTopicsList(HomeModel model) {
     return ListView.builder(
-                          itemCount: model.myProducts.length,
-                          scrollDirection: Axis.horizontal,
-                          shrinkWrap: true,
-                          itemBuilder: (BuildContext context, int index) {
-                            return InkWell(
-                              onTap: () {
-                                model.setSelected(index);
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.only(right: 10.0),
-                                child: Column(
-                                  children: [
-                                    CustomText(
-                                        text: model.myProducts[index]["name"]
-                                            .toString(),
-                                        fontSize: 16,
-                                        weight: FontWeight.w400),
-                                    model.myProducts[index]["isSelected"] ==
-                                            true
-                                        ? Container(
-                                            height: 2,
-                                            color: const Color(0xff1877F2),
-                                            child: Text(model
-                                                .myProducts[index]["name"]
-                                                .toString()),
-                                          )
-                                        : Container()
-                                  ],
-                                ),
-                              ),
-                            );
-                          },
-                        );
+      itemCount: model.myProducts.length,
+      scrollDirection: Axis.horizontal,
+      shrinkWrap: true,
+      itemBuilder: (BuildContext context, int index) {
+        return InkWell(
+          onTap: () {
+            model.setSelected(index);
+          },
+          child: Padding(
+            padding: const EdgeInsets.only(right: 10.0),
+            child: Column(
+              children: [
+                CustomText(
+                    text: model.myProducts[index]["name"].toString(),
+                    fontSize: 16,
+                    weight: FontWeight.w400),
+                model.myProducts[index]["isSelected"] == true
+                    ? Container(
+                        height: 2,
+                        color: const Color(0xff1877F2),
+                        child: Text(model.myProducts[index]["name"].toString()),
+                      )
+                    : Container()
+              ],
+            ),
+          ),
+        );
+      },
+    );
   }
 
   Center _buildActions(BuildContext context) {
     return Center(
-            child: Container(
-                margin: const EdgeInsets.only(right: 31),
-                height: 31,
-                width: 31,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(6),
-                    border: Border.all(width: 0.3, color: Colors.black)),
-                child:  InkWell(
-                  onTap: () {
-                    Navigator.pushNamed(context, "notification");
-                    
-                  },
-                  child: const Icon(
-                      Icons.notifications_outlined,
-                      color: Colors.black,
-                      size: 22,
-                    
-                  ),
-                )),
-          );
+      child: Container(
+          margin: const EdgeInsets.only(right: 31),
+          height: 31,
+          width: 31,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(6),
+              border: Border.all(width: 0.3, color: Colors.black)),
+          child: InkWell(
+            onTap: () {
+              Navigator.pushNamed(context, "notification");
+            },
+            child: const Icon(
+              Icons.notifications_outlined,
+              color: Colors.black,
+              size: 22,
+            ),
+          )),
+    );
   }
 }
-

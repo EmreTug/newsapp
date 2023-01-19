@@ -1,6 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:newsapp/core/viewmodel/base_model.dart';
 
+import '../../../../../core/services/newsservices.dart';
+import '../../../../../locator.dart';
+
 class HomeModel extends BaseModel {
+   final NewsService _newsService =
+      locator<NewsService>();
+      late Future<QuerySnapshot<Map<String, dynamic>>> data;
   final List<Map> myProducts = [
     {"id": 0, "name": "All", "isSelected": false},
     {"id": 1, "name": "InterNational", "isSelected": false},
@@ -16,5 +23,8 @@ class HomeModel extends BaseModel {
     }
     myProducts[index]["isSelected"] = !myProducts[index]["isSelected"];
     notifyListeners();
+  }
+  void fetchNews(){
+   data= _newsService.getNews();
   }
 }
