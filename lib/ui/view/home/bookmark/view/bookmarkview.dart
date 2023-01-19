@@ -31,33 +31,35 @@ class BookMark extends StatelessWidget {
             child: FutureBuilder(
                 future: model.data,
                 builder: (context, snapshot) {
-                  if (snapshot.connectionState==ConnectionState.waiting) {
-                    return const Center(child: CircularProgressIndicator(),);
-                    
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
                   } else {
                     return ListView.builder(
                       shrinkWrap: true,
                       itemCount: snapshot.data!.docs.length,
                       itemBuilder: (context, index) {
-                      return  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children:  [
-                      //searchbar
-                      LatestCard(
-                          id: snapshot.data!.docs[index].id,
-                          country: "USA",
-                          authorLogo: "logo",
-                          title: snapshot.data!.docs[index]["title"],
-                          authorName: "CNBC",
-                          imagePath:snapshot.data!.docs[index]["photoUrl"]),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                    ],
-                  );
-                    },);
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            //searchbar
+                            LatestCard(
+                                id: snapshot.data!.docs[index].id,
+                                country: "USA",
+                                authorLogo: "logo",
+                                title: snapshot.data!.docs[index]["title"],
+                                authorName: "CNBC",
+                                imagePath: snapshot.data!.docs[index]
+                                    ["photoUrl"]),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                          ],
+                        );
+                      },
+                    );
                   }
-                  
                 }),
           ),
         ),

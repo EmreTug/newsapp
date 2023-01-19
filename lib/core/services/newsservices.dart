@@ -9,6 +9,7 @@ import 'package:path/path.dart' as Path;
 class NewsService{
     final _newsReference = FirebaseFirestore.instance.collection('News');
     final _userReference = FirebaseFirestore.instance.collection('User');
+    final _topicReference = FirebaseFirestore.instance.collection('Topic');
 
   Future<void> addAdvert(News news) async {
     try {
@@ -59,5 +60,11 @@ class NewsService{
  final FirebaseAuth _auth =
           FirebaseAuth.instance;
     return await _newsReference.where("userUid",isEqualTo:_auth.currentUser!.uid).get();
+  }
+    Future<Object> getTopicsList() async {
+ 
+     var result=await _topicReference.get();
+     return result.docs.first["Topics"] as List<dynamic>;
+
   }
 }

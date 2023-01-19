@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:newsapp/core/enum/viewstate.dart';
 import 'package:newsapp/ui/view/home/home/viewmodel/home_viewmodel.dart';
 import 'package:newsapp/ui/widgets/custom_text.dart';
 import '../../../../shared/ui_helpers.dart';
@@ -15,6 +16,7 @@ class HomeView extends StatelessWidget {
     var title = "Trending";
     return BaseView<HomeModel>(onModelReady: (homemodel) async {
       await homemodel.fetchNews();
+      await homemodel.fetchTopicList();
     }, builder: (context, model, child) {
       var authorLogo = "logo";
       var authorName = "BBC NEWS";
@@ -67,7 +69,7 @@ class HomeView extends StatelessWidget {
                         ),
                         SizedBox(
                           height: 30,
-                          child: _buildTopicsList(model),
+                          child:(model.state==ViewState.Busy)? Container():_buildTopicsList(model),
                         ),
                         FutureBuilder(
                           future: model.data,
