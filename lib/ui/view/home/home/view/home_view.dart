@@ -13,8 +13,8 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var title = "Trending";
-    return BaseView<HomeModel>(onModelReady: (homemodel) {
-      homemodel.fetchNews();
+    return BaseView<HomeModel>(onModelReady: (homemodel) async {
+      await homemodel.fetchNews();
     }, builder: (context, model, child) {
       var authorLogo = "logo";
       var authorName = "BBC NEWS";
@@ -39,7 +39,21 @@ class HomeView extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Column(
                 children: [
-                  TradingWidget(title: title,model:model),
+                  FutureBuilder(
+                      future: model.data,
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState==ConnectionState.waiting) {
+                          return const Center(child: CircularProgressIndicator(),);
+                        } else {
+                          return TradingWidget(
+                          title: snapshot.data!.docs.first["title"],
+                          id: snapshot.data!.docs.first.id,
+                          imageUrl:snapshot.data!.docs.first["photoUrl"] ,
+
+                        );
+                        }
+                        
+                      }),
                   Padding(
                     padding: const EdgeInsets.only(top: 16.0),
                     child: Column(
@@ -63,13 +77,17 @@ class HomeView extends StatelessWidget {
                               return const Center(
                                 child: CircularProgressIndicator(),
                               );
+                            } else if (snapshot.data == null) {
+                              return const Center(
+                                child: CircularProgressIndicator(),
+                              );
                             } else {
                               return ListView.builder(
                                 shrinkWrap: true,
                                 itemCount: snapshot.data!.docs.length,
                                 itemBuilder: (context, index) {
                                   return LatestCard(
-                                    id: snapshot.data!.docs[index].id,
+                                      id: snapshot.data!.docs[index].id,
                                       country: country,
                                       authorLogo: authorLogo,
                                       title: snapshot.data!.docs[index]

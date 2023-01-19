@@ -24,7 +24,8 @@ class HomeModel extends BaseModel {
     myProducts[index]["isSelected"] = !myProducts[index]["isSelected"];
     notifyListeners();
   }
-  void fetchNews(){
+  Future<void> fetchNews()async {
    data= _newsService.getNews();
+   
   }
 }
