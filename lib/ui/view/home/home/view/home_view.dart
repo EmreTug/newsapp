@@ -3,6 +3,7 @@ import 'package:newsapp/core/enum/viewstate.dart';
 import 'package:newsapp/ui/view/home/home/viewmodel/home_viewmodel.dart';
 import 'package:newsapp/ui/widgets/custom_text.dart';
 import '../../../../shared/ui_helpers.dart';
+import '../../../../widgets/news.dart';
 import '../../../../widgets/trading.dart';
 import '../../../../widgets/title.dart';
 import '../../../base_view.dart';
@@ -46,13 +47,19 @@ class HomeView extends StatelessWidget {
                         if (snapshot.connectionState==ConnectionState.waiting) {
                           return const Center(child: CircularProgressIndicator(),);
                         } else {
-                          
-                          return TradingWidget(
-                          title: snapshot.data!.docs.first["title"],
-                          id: snapshot.data!.docs.first.id,
-                          imageUrl:snapshot.data!.docs.first["photoUrl"] ,
-
-                        );
+                         return Column(children: [
+                            HomePageTittleCard(text:"Trending",click: () {
+          Navigator.pushNamed(context, "trending");
+        },),
+        NewsWidget(
+        id: snapshot.data!.docs.first.id,
+          imagePath:snapshot.data!.docs.first["photoUrl"] ,
+          country: "Europe",
+          title:snapshot.data!.docs.first["title"],
+          authorlogoPath: "logo",
+          author: "BBC News")
+                         ],);
+                         
                         }
                         
                       }),

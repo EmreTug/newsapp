@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:newsapp/core/extension/imageextension.dart';
 
@@ -6,11 +5,14 @@ import '../../widgets/custom_text.dart';
 
 class TopicCard extends StatelessWidget {
   const TopicCard({
-    super.key, required this.image, required this.title, required this.desc,
+    super.key,
+    required this.image,
+    required this.title,
+    required this.desc,
   });
-final String image;
-final String title;
-final String desc;
+  final String image;
+  final String title;
+  final String desc;
 
   @override
   Widget build(BuildContext context) {
@@ -34,15 +36,14 @@ final String desc;
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children:  [
+              children: [
                 CustomText(
-                    text:
-                        title,
+                    text: title,
                     maxLines: 2,
                     fontSize: 16,
                     weight: FontWeight.w600),
                 CustomText(
-                  text:desc,
+                  text: desc,
                   maxLines: 2,
                   fontSize: 13,
                   weight: FontWeight.w400,
