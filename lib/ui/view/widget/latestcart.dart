@@ -64,7 +64,7 @@ class LatestCard extends StatelessWidget {
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(right: 8.0),
-                            child: Image.asset(authorLogo.getimage()),
+                            child: Image.asset(authorLogo.getimage(),height:25,),
                           ),
                           CustomText(
                             text: authorName,

@@ -218,7 +218,14 @@ class _LoginViewState extends State<LoginView> {
                     ),
                     GestureDetector(
                       onTap: () async {
-                        await model.googleLogin();
+                        var result=await model.googleLogin();
+                        if (result==true) {
+                          if(!context.mounted)return;
+                          Navigator.pushNamed(context, "selecttopics");
+                          
+                        } else {
+                          
+                        }
                       },
                       child: Container(
                         height: 48,

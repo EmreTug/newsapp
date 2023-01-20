@@ -58,7 +58,7 @@ class NewsWidget extends StatelessWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(right: 8.0),
-                    child: Image.asset(authorlogoPath.getimage()),
+                    child: Image.asset(authorlogoPath.getimage(),height: 30,),
                   ),
                   CustomText(
                     text: author,

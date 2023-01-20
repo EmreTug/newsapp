@@ -40,17 +40,20 @@ class ExploreView extends StatelessWidget {
                 },
               ),
               //searchbar
-             model.state==ViewState.Idle? ListView.builder(
-                shrinkWrap: true,
-                itemCount: 3,
-                itemBuilder: (context, index) {
-                  return TopicCard(
-                    title: model.myProducts[index]["name"],
-                    desc: model.myProducts[index]["description"],
-                    image: model.myProducts[index]["image"],
-                  );
-                },
-              ):Container(),
+              model.state == ViewState.Idle
+                  ? ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: 3,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemBuilder: (context, index) {
+                        return TopicCard(
+                          title: model.myProducts[index]["name"],
+                          desc: model.myProducts[index]["description"],
+                          image: model.myProducts[index]["image"],
+                        );
+                      },
+                    )
+                  : Container(),
 
               const CustomText(
                   text: "Popular Topic", weight: FontWeight.w600, fontSize: 16),
@@ -63,6 +66,7 @@ class ExploreView extends StatelessWidget {
                     );
                   } else {
                     return ListView.builder(
+                      physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       itemCount: snapshot.data!.docs.length,
                       itemBuilder: (context, index) {

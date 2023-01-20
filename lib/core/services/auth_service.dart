@@ -19,6 +19,18 @@ class AuthenticationService {
 
     return hasUser;
   }
+    bool getUser()  {
+    var currentUser =  _api.getCurrentUser();
+
+    if (currentUser!=null) {
+      return true;
+    }
+
+    return false;
+  }
+  Future<void> logout()async{
+    return await  _api.logout();
+  }
 
   Future<bool> register(String email, String password) async {
     var fetchedUser = await _api.createUser(email, password);

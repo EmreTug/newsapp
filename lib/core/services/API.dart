@@ -15,7 +15,15 @@ class Api {
       return null;
     }
   }
+ User? getCurrentUser()  {
+    var result =  FirebaseAuth.instance.currentUser;
 
+    if (result != null) {
+      return result;
+    } else {
+      return null;
+    }
+  }
   Future<UserModel?> createUser(String email, String password) async {
     var result = await FirebaseAuth.instance
         .createUserWithEmailAndPassword(email: email, password: password);
@@ -24,6 +32,10 @@ class Api {
     } else {
       return null;
     }
+  }
+  Future<void> logout() async {
+    await FirebaseAuth.instance.signOut();
+  
   }
 
 

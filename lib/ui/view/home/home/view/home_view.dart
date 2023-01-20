@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:newsapp/core/enum/viewstate.dart';
+import 'package:newsapp/core/extension/imageextension.dart';
 import 'package:newsapp/ui/view/home/home/viewmodel/home_viewmodel.dart';
 import 'package:newsapp/ui/widgets/custom_text.dart';
 import '../../../../shared/ui_helpers.dart';
 import '../../../../widgets/news.dart';
-import '../../../../widgets/trading.dart';
 import '../../../../widgets/title.dart';
 import '../../../base_view.dart';
 import '../../../widget/latestcart.dart';
@@ -25,10 +24,10 @@ class HomeView extends StatelessWidget {
         appBar: AppBar(
           elevation: 0,
           backgroundColor: Colors.transparent,
-          leading: const Center(
-              child: Text(
-            "Logo",
-            style: TextStyle(color: Colors.black, fontSize: 15),
+          leading: Center(
+              child: Image.asset(
+            "newspaper".getimage(),
+            height: 30,
           )),
           actions: [_buildActions(context)],
         ),
@@ -44,24 +43,31 @@ class HomeView extends StatelessWidget {
                   FutureBuilder(
                       future: model.data,
                       builder: (context, snapshot) {
-                        if (snapshot.connectionState==ConnectionState.waiting) {
-                          return const Center(child: CircularProgressIndicator(),);
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
                         } else {
-                         return Column(children: [
-                            HomePageTittleCard(text:"Trending",click: () {
-          Navigator.pushNamed(context, "trending");
-        },),
-        NewsWidget(
-        id: snapshot.data!.docs.first.id,
-          imagePath:snapshot.data!.docs.first["photoUrl"] ,
-          country: "Europe",
-          title:snapshot.data!.docs.first["title"],
-          authorlogoPath: "logo",
-          author: "BBC News")
-                         ],);
-                         
+                          return Column(
+                            children: [
+                              HomePageTittleCard(
+                                text: "Trending",
+                                click: () {
+                                  Navigator.pushNamed(context, "trending");
+                                },
+                              ),
+                              NewsWidget(
+                                  id: snapshot.data!.docs.first.id,
+                                  imagePath:
+                                      snapshot.data!.docs.first["photoUrl"],
+                                  country: "Europe",
+                                  title: snapshot.data!.docs.first["title"],
+                                  authorlogoPath: "logo",
+                                  author: "BBC News")
+                            ],
+                          );
                         }
-                        
                       }),
                   Padding(
                     padding: const EdgeInsets.only(top: 16.0),
@@ -76,7 +82,9 @@ class HomeView extends StatelessWidget {
                         ),
                         SizedBox(
                           height: 30,
-                          child:(model.myProducts.isEmpty)? Container():_buildTopicsList(model),
+                          child: (model.myProducts.isEmpty)
+                              ? Container()
+                              : _buildTopicsList(model),
                         ),
                         FutureBuilder(
                           future: model.data,
