@@ -13,7 +13,6 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var title = "Trending";
     return BaseView<HomeModel>(onModelReady: (homemodel) async {
       await homemodel.fetchNews();
       await homemodel.fetchTopicList();
@@ -47,6 +46,7 @@ class HomeView extends StatelessWidget {
                         if (snapshot.connectionState==ConnectionState.waiting) {
                           return const Center(child: CircularProgressIndicator(),);
                         } else {
+                          
                           return TradingWidget(
                           title: snapshot.data!.docs.first["title"],
                           id: snapshot.data!.docs.first.id,
@@ -69,7 +69,7 @@ class HomeView extends StatelessWidget {
                         ),
                         SizedBox(
                           height: 30,
-                          child:(model.state==ViewState.Busy)? Container():_buildTopicsList(model),
+                          child:(model.myProducts.isEmpty)? Container():_buildTopicsList(model),
                         ),
                         FutureBuilder(
                           future: model.data,

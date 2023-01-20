@@ -6,8 +6,11 @@ import '../../widgets/custom_text.dart';
 
 class TopicCard extends StatelessWidget {
   const TopicCard({
-    super.key,
+    super.key, required this.image, required this.title, required this.desc,
   });
+final String image;
+final String title;
+final String desc;
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +23,8 @@ class TopicCard extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: Image.asset(
-              "topic".getimage(),
+            child: Image.network(
+              image,
               height: 70,
               width: 70,
               fit: BoxFit.fill,
@@ -31,15 +34,15 @@ class TopicCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: const [
+              children:  [
                 CustomText(
                     text:
-                        "Health",
+                        title,
                     maxLines: 2,
                     fontSize: 16,
                     weight: FontWeight.w600),
                 CustomText(
-                  text: "Get energizing workout moves, healthy recipes...",
+                  text:desc,
                   maxLines: 2,
                   fontSize: 13,
                   weight: FontWeight.w400,

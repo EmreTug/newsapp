@@ -8,7 +8,7 @@ import '../../../../../locator.dart';
 class HomeModel extends BaseModel {
   final NewsService _newsService = locator<NewsService>();
   late Future<QuerySnapshot<Map<String, dynamic>>> data;
-  late List<dynamic> topicList;
+   List<Map> myProducts=[];
   // final List<Map> myProducts = [
   //   {"id": 0, "name": "All", "isSelected": false},
   //   {"id": 1, "name": "InterNational", "isSelected": false},
@@ -17,7 +17,7 @@ class HomeModel extends BaseModel {
   //   {"id": 4, "name": "InterNational", "isSelected": false},
   //   {"id": 5, "name": "Spor", "isSelected": false},
   // ];
-   List<Map<String, dynamic>> myProducts=List.empty();
+  //  List<Map<String, dynamic>> myProducts=List.empty();
 
   void setSelected(int index) {
     for (var item in myProducts) {
@@ -33,10 +33,10 @@ class HomeModel extends BaseModel {
 
   Future<void> fetchTopicList() async {
     setState(ViewState.Busy);
-    topicList = await _newsService.getTopicsList() as List<dynamic>;
-
-    myProducts =
-        topicList.map((e) => {"name": e, "isSelected": false}).toList();
+    var topics = await _newsService.getTopicsList();
+    topics.forEach((key, value) {
+      myProducts.add({"name": key,"image":value["image"],"description":value["description"], "isSelected": false});
+    });
     setState(ViewState.Idle);
   }
 }

@@ -61,10 +61,11 @@ class NewsService{
           FirebaseAuth.instance;
     return await _newsReference.where("userUid",isEqualTo:_auth.currentUser!.uid).get();
   }
-    Future<Object> getTopicsList() async {
- 
+    Future<Map<String, dynamic>> getTopicsList() async {
+     
      var result=await _topicReference.get();
-     return result.docs.first["Topics"] as List<dynamic>;
+     var list=result.docs.first.data();
+     return list;
 
   }
 }
