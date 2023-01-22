@@ -1,12 +1,40 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:newsapp/core/model/filluser.dart';
 import 'package:newsapp/ui/view/widget/custombutton.dart';
 import '../../../../../shared/ui_helpers.dart';
 import '../../../../base_view.dart';
 import '../viewmodel/fillprofileviewmodel.dart';
 
-class FillProfile extends StatelessWidget {
+class FillProfile extends StatefulWidget {
   const FillProfile({super.key});
-  
+
+  @override
+  State<FillProfile> createState() => _FillProfileState();
+}
+
+class _FillProfileState extends State<FillProfile> {
+  late TextEditingController usernameController;
+  late TextEditingController phoneNumberController;
+  late TextEditingController fullNameController;
+  @override
+  void initState() {
+usernameController=TextEditingController();
+phoneNumberController=TextEditingController();
+fullNameController=TextEditingController();
+    // TODO: implement initState
+    super.initState();
+  }
+  @override
+  void dispose() {
+    usernameController.dispose();
+    phoneNumberController.dispose();
+    fullNameController.dispose();
+    // TODO: implement dispose
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
       String username = "Username";
@@ -83,6 +111,7 @@ class FillProfile extends StatelessWidget {
                         child: Form(
                           autovalidateMode: AutovalidateMode.always,
                           child: TextFormField(
+                            controller: usernameController,
                             decoration: InputDecoration(
                               border: const OutlineInputBorder(),
                               enabledBorder: const OutlineInputBorder(
@@ -101,6 +130,7 @@ class FillProfile extends StatelessWidget {
                         child: Form(
                           autovalidateMode: AutovalidateMode.always,
                           child: TextFormField(
+                            controller: fullNameController,
                             decoration: InputDecoration(
                               border: const OutlineInputBorder(),
                               enabledBorder: const OutlineInputBorder(
@@ -119,6 +149,7 @@ class FillProfile extends StatelessWidget {
                         child: Form(
                           autovalidateMode: AutovalidateMode.always,
                           child: TextFormField(
+                            controller: phoneNumberController,
                             decoration: InputDecoration(
                               border: const OutlineInputBorder(),
                               enabledBorder: const OutlineInputBorder(
@@ -139,7 +170,8 @@ class FillProfile extends StatelessWidget {
                     bottom: UIHelper.HorizontalSpaceSmall),
                 child: CustomButtonFullWidth(
                   text: "Next",
-                  click: () {
+                  click: ()async {
+                    model.addUserProfile(FillUser(usernameController.text, fullNameController.text, phoneNumberController.text, PickedFile(model.getImageFile.path)));
                     Navigator.pushNamedAndRemoveUntil(
                         context, "bottomnavigationbar", (route) => false);
                   },
