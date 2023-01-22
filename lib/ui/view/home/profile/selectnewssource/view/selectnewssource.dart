@@ -77,7 +77,8 @@ class _SelectNewsSourceState extends State<SelectNewsSource> {
                                   ),
                                 ),
                                 Text(
-                                  "CNBC",
+                                  e["name"],
+                                  maxLines: 1,
                                   style: GoogleFonts.poppins(
                                     fontWeight: FontWeight.w400,
                                     fontSize: 16,
@@ -116,7 +117,9 @@ class _SelectNewsSourceState extends State<SelectNewsSource> {
                   const EdgeInsets.only(bottom: UIHelper.HorizontalSpaceSmall),
               child: CustomButtonFullWidth(
                 text: "Next",
-                click: () {
+                click: () async{
+                  await model.addUserNewsSource(model.newsSource);
+                  if(!context.mounted)return;
                   Navigator.pushNamed(context, "fillprofile");
                 },
               ),
