@@ -18,12 +18,15 @@ import 'package:newsapp/ui/view/home/profile/selecttopics/viewmodel/selecttopics
 import 'package:newsapp/ui/view/home/profile/viewmodel/profile_viewmodel.dart';
 import 'package:newsapp/ui/view/home/trending/viewmodel/trending_viewmodel.dart';
 
+import 'core/services/UserService.dart';
+
 GetIt locator = GetIt.instance;
 
 void setupLocator() {
   locator.registerLazySingleton(() => AuthenticationService());
   locator.registerLazySingleton(() => Api());
   locator.registerLazySingleton(() => NewsService());
+  locator.registerLazySingleton(() => UserService());
 
   locator.registerFactory(() => LoginModel());
   locator.registerFactory(() => RegisterModel());

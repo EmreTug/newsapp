@@ -79,7 +79,8 @@ class _SelectTopicsState extends State<SelectTopics> {
               padding: const EdgeInsets.only(
                 top: UIHelper.HorizontalSpaceSmall,
                 bottom: UIHelper.HorizontalSpaceSmall),
-              child: CustomButtonFullWidth(text: "Next",click: () {
+              child: CustomButtonFullWidth(text: "Next",click: ()async {
+                  model.addTopic(model.topicList);
                 Navigator.pushNamed(context, "selectnewssource");
               },),
             )
