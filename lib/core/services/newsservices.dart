@@ -11,7 +11,7 @@ class NewsService{
     final _userReference = FirebaseFirestore.instance.collection('User');
     final _topicReference = FirebaseFirestore.instance.collection('Topic');
 
-  Future<void> addAdvert(News news) async {
+  Future<void> addNews(News news) async {
     try {
       final FirebaseAuth _auth =
           FirebaseAuth.instance;

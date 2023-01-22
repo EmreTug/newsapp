@@ -21,6 +21,6 @@ class AddNewsModel extends BaseModel {
     notifyListeners();
   }
   Future<void> addNews(News news)async{
-      return await _newsService.addAdvert(news);
+      return await _newsService.addNews(news);
   }
 }
