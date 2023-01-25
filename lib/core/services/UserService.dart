@@ -46,5 +46,10 @@ class UserService {
           'image': image_url,
         });
      }
+     Future<DocumentSnapshot> getUserProfile()async{
+  var currentUser =Api().getCurrentUser();
+
+        return _userReference.doc(currentUser!.uid).get();
+     }
 
 }
