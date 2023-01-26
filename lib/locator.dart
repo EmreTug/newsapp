@@ -12,6 +12,7 @@ import 'package:newsapp/ui/view/home/bookmark/viewmodel/bookmark_viewmodel.dart'
 import 'package:newsapp/ui/view/home/detail/viewmodel/detail_viewmodel.dart';
 import 'package:newsapp/ui/view/home/explore/viewmodel/explore_viewmodel.dart';
 import 'package:newsapp/ui/view/home/home/viewmodel/home_viewmodel.dart';
+import 'package:newsapp/ui/view/home/profile/editprofile/viewmodel/editprofile_viewmodel.dart';
 import 'package:newsapp/ui/view/home/profile/fillprofile/viewmodel/fillprofileviewmodel.dart';
 import 'package:newsapp/ui/view/home/profile/selectnewssource/viewmodel/selectnewssourceviewmodel.dart';
 import 'package:newsapp/ui/view/home/profile/selecttopics/viewmodel/selecttopicsviewmodel.dart';
@@ -44,7 +45,7 @@ void setupLocator() {
   locator.registerFactory(() => DetailModel());
   locator.registerFactory(() => ExploreModel());
   // locator.registerFactory(() => NotificationModel());
-  // locator.registerFactory(() => EditProfileModel());
+  locator.registerFactory(() => EditProfileModel());
   // locator.registerFactory(() => SettingsModel());
   locator.registerFactory(() => TrendingModel());
 
